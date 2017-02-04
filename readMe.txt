@@ -1,1 +1,1 @@
-This directory contains all of the directories that I will be using throughout the bootcamp
+This folder holds all of the directories that will be used in the bootcamp
