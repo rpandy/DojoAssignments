@@ -1,0 +1,57 @@
+/*CSS reset settings here*/
+
+/*I left all of my commented out code because this exercise was tough for me!*/
+
+*{
+ margin: 0px;
+ padding: 0px;
+}
+#wrapper{
+ width: 950px;
+ /*height: 700px;*/
+ background-color: silver;
+ margin: 0px auto;
+ overflow: auto;
+ /*padding: 15px*/
+}
+#header{
+ height: 150px;
+ background-color: green;
+ /*margin: 2% 2%;*/
+ margin: 10px 15px;
+}
+#navigation{
+ height: 300px;
+ width: 200px;
+ background-color: blue;
+ margin: 1px 15px;
+ /*margin: 1% 1%;*/
+ display: inline-block;
+ vertical-align: top;
+
+
+}
+#main_content{
+ height: 400px;
+ width: 700px;
+ background-color: red;
+ margin: 1px 5px 25px;
+ /*padding: 5px;*/
+ display: inline-block;
+ /*margin: 10% 2% 5% 25%;*/
+}
+.subcontents{
+ height: 200px;
+ width: 210px;
+ background-color: yellow;
+ /*margin: 3% 1.5% 1.5% 1%;*/
+ margin: 5px 10px;
+ display: inline-block;
+}
+#advertisement{
+ height: 120px;
+ width: 660px;
+ background-color: purple;
+ /*margin: 1%;*/
+ margin: 5px;
+}
