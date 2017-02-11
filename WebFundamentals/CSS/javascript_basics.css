@@ -1,0 +1,48 @@
+//Reset
+* {
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body{
+    background-color: rgb(29, 66, 102);
+}
+
+h1{
+    background-color: red;
+    color: rgb(118, 170, 223);
+    width:970;
+    padding: 20px;
+    border-radius: 25px;
+
+}
+#navigation{
+    height:220px;
+    width: 230px;
+    background-color: turquoise;
+    border-radius: 25px;
+    margin: 10px 10px;
+    padding: 5px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+#main{
+    background-color: black;
+    width: 1000px;
+    color: rgb(118, 170, 223);
+    margin: 10px 10px;
+    border-radius: 25px;
+    padding: 20px;
+    display: inline-block;
+}
+
+#info{
+    background-color: grey;
+    padding: 20px;
+    margin: 20px;
+    color:rgb(118, 170, 223);
+    border-radius: 25px;
+}
