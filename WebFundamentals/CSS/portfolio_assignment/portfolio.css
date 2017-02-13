@@ -1,0 +1,150 @@
+* {
+    outline: 0px;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    font-family:sans-serif;
+}
+body{
+    width: 970px;
+    height: 970px;
+    /*background-color: #6F5964;*/
+
+}
+.wrapper{
+    background-color: #6F5964;
+    height: 970px;
+}
+#maincontent{
+    padding: 20px;
+}
+.name_quote{
+    background-color: #F9F9F9;
+    font-family:sans-serif;
+    font-size: 18px;
+    height:60px;
+}
+h1{
+    font-size: 30px;
+    margin: 15px 10px 10px 10px;
+    padding: 15px 0px 0px 10px;
+
+}
+h3{
+    color: white;
+    background: linear-gradient(#ABAAB0,#9795A0,#ABAAB0);
+    height: 40px;
+    font-size: 14;
+    padding: 15px 0px 0px 10px;
+
+}
+h4{
+    height: 35px;
+    width: auto;
+    color: white;
+    font-size: 15px;
+    padding: 15px 0px 0px 10px;
+    background: linear-gradient(#ABAAB0,#9795A0,#ABAAB0);
+}
+
+a{
+    color:black;
+}
+
+p{
+    padding: 5px;
+}
+#quote{
+    text-align: right;
+    padding: 3px 0px 0px 10px;
+    margin: -42px 48px 0px 10px;
+}
+#portfoliophoto{
+    height: 260px;
+    width: 400px;
+    margin: 0px 0px 10px 0px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #C0C0C0;
+    display: inline-block;
+}
+
+#about{
+    height: 267px;
+    width: 481px;
+    display: inline-block;
+    /*padding: 10px;*/
+    margin: 0 10px 0 10px;
+    vertical-align: top;
+    font-size: 12;
+    background: linear-gradient(to right,#FFFEFF,#DBCCDA);
+}
+
+.subsection{
+    height:550px;
+    width: 290px;
+    margin: 5px;
+    font-size: 12px;
+    /*padding: 10px;*/
+    border: 10px;
+    background-color: purple;
+    background: linear-gradient(to right,#FFFEFF,#DBCCDA);
+    display: inline-block;
+    vertical-align: top;
+}
+
+.productPhotos{
+    width:290px;
+    height:150px;
+}
+
+.technologies{
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    /*display: inline;*/
+
+}
+
+.technologiesGroup{
+    padding: 5px;
+    margin: 5px;
+}
+
+.footer{
+    background-color: #F9F9F9;
+    text-align: center;
+}
+
+#laMode{
+    margin-bottom: 7px;
+    margin-top: 53px;
+}
+
+#familyContacts{
+    margin-bottom: 6px;
+    margin-top: 39px;
+}
+
+#fiveEleven{
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+.openApp{
+    margin-left: 100px;
+    color: white;
+    text-decoration: none;
+    background-color: #238262;
+    padding: 5px 5px;
+    border: 1px solid black;
+    border-radius: 25px;
+    box-shadow: 6px 5px 8px grey;
+}
+
+.contact{
+text-align: center;
+}
+.contact img{
+    height: 20px;
+    width: 20px;
+}
