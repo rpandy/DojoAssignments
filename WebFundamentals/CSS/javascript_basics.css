@@ -7,12 +7,15 @@
 }
 
 body{
-    background-color: rgb(29, 66, 102);
+    background-color: #1B305F;
+}
+ul{
+    list-style-position: inside;
 }
 
 h1{
-    background-color: red;
-    color: rgb(118, 170, 223);
+    background-color: #DF0022;
+    color: #BFD6ED;
     width:970;
     padding: 20px;
     border-radius: 25px;
@@ -21,11 +24,12 @@ h1{
 #navigation{
     height:220px;
     width: 230px;
-    background-color: turquoise;
+    background-color: #00808E;
     border-radius: 25px;
     margin: 10px 10px;
     padding: 5px;
     vertical-align: top;
+    text-align: left;
     display: inline-block;
 }
 
