@@ -29,17 +29,32 @@
     width: 360px;
     display: inline-block;
     margin: 20px;
+    vertical-align: top;
 }
 
 .header p{
     text-align: right;
     vertical-align: top;
-    display: inline-block;
+    display: inline;
+    color:white;
 }
 .header a{
     text-align: right;
     vertical-align: top;
     display: inline-block;
+    color: #FFD500
+
+}
+.searching{
+    display: inline-block;
+    vertical-align: top;
+
+}
+.searchbar{
+    text-align: right;
+    margin-right: 125px;
+    vertical-align: top;
+
 }
 
 button{
@@ -48,14 +63,20 @@ button{
 }
 input{
     vertical-align: top;
-    /*display: inline-block;*/
+    display: inline-block;
     padding: 10px;
+
 }
 .searching{
     background-color: #444444;
     vertical-align: top;
     display: inline-block;
     padding: 25px;
+    margin-left: 640px;
+    box-shadow: 5px 5px 5px;
+    border-radius: 15px;
+
+
 }
 
 #navigation{
@@ -64,9 +85,11 @@ input{
     margin-left: 100px;
     width: 760px;
     display: inline-block;
+    margin-top: 10px;
     font-size: 20px;
     padding: 0px;
     border-radius: 5px;
+    box-shadow: 5px 5px 5px
 }
 #navigation a{
     color: white;
@@ -81,6 +104,7 @@ input{
     margin-right: auto;
     text-align: center;
     display: inline-block;
+    list-style-position: inside;
 }
 .maincontent_all a{
     color: white;
@@ -93,7 +117,7 @@ input{
 #maincontent_paragraph{
     width: 500px;
     color: white;
-    font-size: 10px;
+    font-size: 14px;
     padding-top: 10px;
     vertical-align: top;
     display: inline-block;
@@ -108,30 +132,51 @@ input{
 
 .subsection{
     background-color: white;
-    height: 300px;
+    height: 200px;
 }
-
+.subsection a{
+    color: #B8D4ED;
+}
 .gettingstarted{
     background-color: white;
     display:inline-block;
-    width: 400px;
+    width: 380px;
+    height: 180px;
     margin-left: 100px;
-    font-size: 10px;
+    font-size: 13px;
     vertical-align: top;
     text-align: center;
+    margin-top: 10px;
+    border-top: solid;
+    border-width: thick;
+    border-color: #3579AF;
 }
 .applications{
     background-color: white;
     display:inline-block;
-    width: 400px;
-    font-size: 10px;
-    vertical-align: top;
+    width: 330px;
+    height: 180px;
+    margin-top: 10px;
+    font-size: 13px;
+    vertical-align: text-top;
     text-align: center;
+    border-top: solid;
+    border-width: thick;
+    border-color: #3579AF
 
 }
 .footer{
-    height:100px;
+    height:80px;
     text-align: center;
     padding-top: 50px;
+    color: #B8D4ED;
+}
 
+.footer a{
+    color: #B8D4ED;
+    margin: 10px;
+}
+.subsection ul{
+    list-style-position: outside;
+    /*list-style-type: lower-alpha;*/
 }
