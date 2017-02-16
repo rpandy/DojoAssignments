@@ -3,4 +3,130 @@
     margin: 0px;
     border: 0px;
     outline: 0px;
+    font-family: Arial sans-serif;
+}
+
+#globe{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+body{
+    width: 970px;
+    height: 1500px;
+    background: linear-gradient(#E5E5E5,#FFFFFF);
+}
+
+.header{
+    background-color: white;
+    display:block;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.header h1{
+    display: inline;
+    font-size: 48px;
+    color: #474747;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.header h2{
+    background: linear-gradient(#1966A2,#4881AE,#1966A2);
+    color: white;
+    padding:10px 0px;
+    border-style: solid;
+    border-width: 2px;
+}
+.navigation{
+    display: block;
+    width: 200px;
+    border-style: solid;
+    border-width: 2px;
+}
+.maincontent_header{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px auto;
+    width: 750px;
+    position: relative;
+    bottom: 580px;
+    left:200px;
+    border-style: solid;
+    border-width: 2px;
+
+}
+.advertisement{
+    width: 200px;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.maincontent{
+        border-style: solid;
+        border-width: 2px;
+}
+
+.footer{
+        border-style: solid;
+        border-width: 2px;
+}
+
+button {
+    display: inline-block;
+    padding: 10px;
+    box-shadow: 0px 12px 16px 0px;
+    border-radius: 10px;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+
+}
+
+#button1{
+    margin-bottom: 10px;
+    display: inline-block;
+
+}
+#button2{
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+#ninja{
+    width:200px;
+    height: 200px;
+    display: block;
+}
+
+#client_server{
+    width:200px;
+    height: 200px;
+    display: block;
+}
+#html{
+    width:200px;
+    height: 200px;
+    display: block;
+}
+#phone{
+    width:200px;
+    height: 200px;
+    display: block;
+}
+#ad_background{
+    width:100px;
+    height: auto;
+    /*display: block;*/
+}
+.advertisement{
+    width: 200px;
+    border-style: solid;
+    border-width: 2px;
+}
+
+#ad_background{
+    z-index: -1;
 }
