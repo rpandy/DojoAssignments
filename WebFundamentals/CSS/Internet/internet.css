@@ -3,130 +3,223 @@
     margin: 0px;
     border: 0px;
     outline: 0px;
-    font-family: Arial sans-serif;
-}
-
-#globe{
-    width: 100px;
-    height: 100px;
-    display: inline-block;
+    font-family: "Helvetica Neue" Arial sans-serif;
 }
 
 body{
+    margin: 0 auto;
     width: 970px;
-    height: 1500px;
-    background: linear-gradient(#E5E5E5,#FFFFFF);
 }
 
 .header{
-    background-color: white;
-    display:block;
+    /*border-color: black;
     border-style: solid;
-    border-width: 2px;
+    border-width: 2px;*/
+}
+
+.header img{
+    width: 100px;
+    display: inline-block;
+    position: absolute;
+    margin-bottom: 10px;
+    /*bottom: 0px;*/
+    z-index: 1;
 }
 
 .header h1{
-    display: inline;
-    font-size: 48px;
-    color: #474747;
-    border-style: solid;
-    border-width: 2px;
+    color: #494949;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-left: 90px;
+    display: inline-block;
 }
-
 .header h2{
-    background: linear-gradient(#1966A2,#4881AE,#1966A2);
+    padding: 25px;
+    font-size: 30px;
     color: white;
-    padding:10px 0px;
-    border-style: solid;
-    border-width: 2px;
+    background: blue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#1A68A2, #4881AE, #1A68A2);
+    background: -o-linear-gradient(#1A68A2, #4881AE, #1A68A2);
+    background: linear-gradient(#1A68A2, #4881AE, #1A68A2); /* For Safari 5.1 to 6.0 */ /* For Opera 11.1 to 12.0 */ /* For Firefox 3.6 to 15 */ /* Standard syntax */
 }
 .navigation{
-    display: block;
-    width: 200px;
+    /*border-color: black;
     border-style: solid;
-    border-width: 2px;
+    border-width: 2px;*/
+    display: inline-block;
+    padding-top: 10px;
+    /*text-align: center;*/
+    width: 200px;
+    background: white; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#E7E7E7, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#E7E7E7, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#E7E7E7, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#E7E7E7, white); /* Standard syntax */
 }
-.maincontent_header{
+
+#left-margin{
+    width: 200px;
     display: inline-block;
     vertical-align: top;
-    margin: 0px auto;
-    width: 750px;
-    position: relative;
-    bottom: 580px;
-    left:200px;
-    border-style: solid;
-    border-width: 2px;
 
 }
-.advertisement{
-    width: 200px;
-    border-style: solid;
-    border-width: 2px;
-}
-
-.maincontent{
-        border-style: solid;
-        border-width: 2px;
-}
-
-.footer{
-        border-style: solid;
-        border-width: 2px;
-}
-
-button {
-    display: inline-block;
+.navigation a{
+    display:block;
+    text-align: center;
     padding: 10px;
-    box-shadow: 0px 12px 16px 0px;
-    border-radius: 10px;
+    margin: 10px;
     color: white;
-    border-style: solid;
-    border-width: 2px;
-
+    box-shadow: 5px 5px 5px #BABABA;
+    border-radius: 10px;
+}
+/* come back to review pseudo classes*/
+.navigation a:first-of-type{
+    background-color: #2B74AD;
 }
 
-#button1{
-    margin-bottom: 10px;
-    display: inline-block;
-
+.navigation a:last-child{
+    background-color: #FF6900;
 }
-#button2{
-    margin-bottom: 10px;
-    display: inline-block;
+#ad_background{
+    width: 200px;
+    height: 0px;
 }
 
 #ninja{
-    width:200px;
-    height: 200px;
-    display: block;
+    width: 100px;
+    padding-left: 50px;
+    vertical-align: middle;
 }
 
-#client_server{
-    width:200px;
-    height: 200px;
-    display: block;
-}
-#html{
-    width:200px;
-    height: 200px;
-    display: block;
-}
-#phone{
-    width:200px;
-    height: 200px;
-    display: block;
-}
-#ad_background{
-    width:100px;
-    height: auto;
-    /*display: block;*/
-}
 .advertisement{
-    width: 200px;
+    border-color: black;
     border-style: solid;
     border-width: 2px;
+    width: 200px;
+    display: inline-block;
+    margin-top: 20px;
+    background-image: url("./images/ad_background.png");
+    background-size: cover;
+}
+.advertisement p{
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+.advertisement a{
+    display:block;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    background-color: #00CAE3;
+    box-shadow: 5px 5px 5px #282828;
+    border-radius: 10px;
 }
 
-#ad_background{
-    z-index: -1;
+.maincontent_header{
+    /*border-color: black;
+    border-style: solid;
+    border-width: 2px;*/
+    display: block;
+    height: 80px;
+    /*width: 700px;*/
+    vertical-align: top;
+    background: white; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#E7E7E7, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#E7E7E7, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#E7E7E7, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#E7E7E7, white); /* Standard syntax */
+    /*width: 200px;*/
+}
+
+.maincontent_header img:first-of-type{
+    width: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.maincontent_header img:last-of-type{
+    width: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 400px;
+
+}
+#contact{
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+.maincontent_header a{
+    text-decoration: none;
+}
+.maincontent_header p{
+    text-align: right;
+    font-size: 12px;
+    /*padding-bottom: 20px;*/
+}
+.maincontent_header p:nth-of-type(2){
+    font-size: 30px;
+    color: #00C4E2;
+}
+.spacing{
+    width: 220px;
+    height: 1200px;
+    display: inline-block;
+}
+#right-side{
+    /*border-color: black;
+    border-style: solid;
+    border-width: 2px;*/
+    width: 760px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+h3{
+    color: #1062A0;
+    font-size: 20px;
+}
+.maincontent{
+    padding: 20px;
+}
+.maincontent img{
+    width: 250px;
+    margin-left: 220px;
+    margin-bottom: 10px;
+}
+.maincontent ul{
+    padding-left: 20px;
+    list-style: inside;
+}
+.maincontent ol{
+    padding-left: 25px;
+    /*list-style: inside;*/
+}
+
+.footer{
+    margin: 30px;
+    border-width: 5px;
+    border-top: solid 5px #007FE4;
+    border-left:solid 5px #007FE4;
+    border-right:solid 5px #007FE4;
+}
+.footer a{
+    text-decoration: none;
+}
+ #html{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    padding-top: 10px;
+    width: 100px;
+}
+
+#bigthree{
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 10px;
+    margin-left: 10px;
+    width: 550px;
 }

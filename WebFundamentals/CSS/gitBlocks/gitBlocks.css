@@ -1,0 +1,152 @@
+*{
+  padding: 0px;
+  margin:0px;
+  border:0px;
+  font-family: "Helvetica Neue" Arial sans-serif;
+}
+#header{
+  background-color:#38B0AD;
+  margin-bottom: 10px;
+  padding: 10px;
+  vertical-align:top;
+}
+#wrapper{
+  width:999px;
+  background-color:#DDDFD4;
+  padding:10px;
+}
+
+h1{
+  display:inline-block;
+  margin-right:200px;
+  text-align: center;
+}
+#header ul{
+  display:inline-block;
+  /*vertical-align: top;*/
+  text-align: center;
+}
+
+#header li{
+  display:inline-block;
+  text-align: center;
+  padding-right: 10px;
+}
+
+#header a{
+  color:white;
+}
+
+#sidebar{
+  display:inline-block;
+  background-color:#153F43;
+  color:white;
+  width: 200px;
+  margin: 10px;
+  padding: 20px;
+  border-color:black;
+  border-width:1px;
+  border-style: solid;
+  vertical-align:top;
+}
+#background{
+    background-color:#FBE691;
+
+}
+#maincontent{
+   background-color:#FBE691;
+   border-color:black;
+   /*border-width:1px;*/
+   /*border-style: solid;*/
+   display: inline-block;
+   width:500px;
+
+}
+
+#Row1, #Row2, #Row3, #footer{
+  /*border-color:black;
+  border-width:1px;
+  border-style: solid;*/
+  }
+
+#Row1{
+  width: 650px;
+  height: 170px;
+  /*margin: 5px;*/
+  color: white;
+  display:inline-block;
+  vertical-align: top;
+}
+
+#Row2{
+  display:inline-block;
+  vertical-align: top;
+  color: white;
+  width: 650px;
+  height: 200px;
+  margin-top: 5px;
+}
+
+#Row3{
+  background-color:#153F43;
+  display:inline-block;
+  color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 600px;
+}
+
+#footer{
+    background-color:#38B0AD;
+    padding: 30px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#init{
+  background-color:#153F43;
+  display:inline-block;
+  padding: 20px;
+  margin:10px;
+  width: 150px;
+}
+
+#add{
+  background-color:#153F43;
+  display:inline-block;
+  padding: 20px;
+  width: 150px;
+  margin:10px;
+  vertical-align:top;
+}
+
+#status{
+  background-color:#153F43;
+  display:inline-block;
+  padding: 20px;
+  width: 150px;
+  margin:10px;
+  vertical-align:top;
+}
+
+#commit{
+  background-color:#153F43;
+  display:inline-block;
+  padding: 20px;
+  margin:10px;
+  width: 250px;
+}
+
+#remoteAdd{
+  background-color:#153F43;
+  display:inline-block;
+  padding: 20px;
+  margin-left:30px;
+  width: 250px;
+}
+
+#gitcat{
+    width:50px;
+    background:transparent url(./github-icon.png);
+
+}
