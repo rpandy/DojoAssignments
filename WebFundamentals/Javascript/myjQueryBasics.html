@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>My jQuery Basics</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+//Effects
+                $('#hide').click(function(){
+                    $('#hide_p').hide();
+                });
+
+                $('#show').click(function(){
+                    $('#hide_p').show();
+                });
+
+                $('#toggle').click(function(){
+                    $('#toggle_p').toggle();
+                });
+
+                $('#slideUp').click(function(){
+                    $('#slideUp_p').slideUp();
+                });
+
+
+                $('#slideDown').click(function(){
+                    $('#slideUp_p').slideDown();
+                });
+
+                $('#slideToggle').click(function(){
+                    $('#slideToggle_p').slideToggle();
+                });
+
+                $('#fadeOut').click(function(){
+                    $('#fadeOut_p').fadeOut();
+                });
+
+                $('#fadeIn').click(function(){
+                    $('#fadeOut_p').fadeIn();
+                });
+// CSS
+                $('#addClass').click(function(){
+                    $('.addClass_p').addClass("newClass");
+                });
+                $('#before').click(function(){
+                    $('#before_p').before("ADD THIS TEXT TO ILLUSTRATE BEFORE!!");
+                });
+                $('#after').click(function(){
+                    $('#after_p').after("ADD THIS TEXT TO ILLUSTRATE AFTER!!");
+                });
+                $('#append').click(function(){
+                    $('p').append("ADD THIS TEXT DIRECTLY AFTER p elementTO ILLUSTRATE APPEND()!!");
+                });
+                $('#html').click(function(){
+                    $('#html_p').html("CHANGED TEXT TO ILLUSTRATE .HTML()!!");
+                });
+
+            });
+
+        </script>
+        <link rel="stylesheet" href="./myjQueryBasics.css">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id=header>
+                <h1> My jQuery Basic</h1>
+            </div>
+            <div class="sub_group">
+                <h2> Effects (functions to do some cool animation effects)</h2>
+
+                <h3>.hide()</h3>
+                <button id="hide">.hide</button>
+                <p id = "hide_p">Description: Hide the matched elements. The matched elements will be hidden immediately, with no animation. This is roughly equivalent to calling .css( "display", "none" ), except that the value of the display property is saved in jQuery's data cache so that display can later be restored to its initial value. If an element has a display value of inline and is hidden then shown, it will once again be displayed inline.</p>
+
+                <h3>.show()</h3>
+                <button id="show">.show</button>
+                <p id= "show_p">Description: Display the matched elements. The matched elements will be revealed immediately, with no animation. This is roughly equivalent to calling .css( "display", "block"), except that the display property is restored to whatever it was initially. If an element has a display value of inline, then is hidden and shown, it will once again be displayed inline.</p>
+
+                <h3>.toggle()</h3>
+                <button id="toggle">.toggle</button>
+                <p id="toggle_p">Description: Display or hide the matched elements. The matched elements will be revealed or hidden immediately, with no animation, by changing the CSS display property. If the element is initially displayed, it will be hidden; if hidden, it will be shown. The display property is saved and restored as needed. If an element has a display value of inline, then is hidden and shown, it will once again be displayed inline.</p>
+
+                <h3>.slideUp()</h3>
+                <button id="slideUp">slideUp</button>
+                <p id="slideUp_p">Description: Hide the matched elements with a sliding motion. The .slideUp() method animates the height of the matched elements. This causes lower parts of the page to slide up, appearing to conceal the items. Once the height reaches 0 (or, if set, to whatever the CSS min-height property is), the display style property is set to none to ensure that the element no longer affects the layout of the page.</p>
+
+                <h3>.slideDown()</h3>
+                <button id= "slideDown">slideDown</button>
+                <p id= "slideDown_p">Description: Display the matched elements with a sliding motion. The .slideDown() method animates the height of the matched elements. This causes lower parts of the page to slide down, making way for the revealed items.</p>
+
+                <h3>.slideToggle()</h3>
+                <button id="slideToggle">slideToggle</button>
+                <p id="slideToggle_p">Description: Display or hide the matched elements with a sliding motion. The .slideToggle() method animates the height of the matched elements. This causes lower parts of the page to slide up or down, appearing to reveal or conceal the items. If the element is initially displayed, it will be hidden; if hidden, it will be shown. The display property is saved and restored as needed. If an element has a display value of inline, then is hidden and shown, it will once again be displayed inline. When the height reaches 0 after a hiding animation, the display style property is set to none to ensure that the element no longer affects the layout of the page.</p>
+
+                <h3>.fadeOut()</h3>
+                <button id="fadeOut">fadeOut</button>
+                <p id="fadeOut_p">Description: Hide the matched elements by fading them to transparent. The .fadeOut() method animates the opacity of the matched elements. Once the opacity reaches 0, the display style property is set to none, so the element no longer affects the layout of the page.</p>
+
+                <h3>.fadeIn()</h3>
+                <button id="fadeIn">fadeIn</button>
+                <p id="fadeIn_p">Description: Display the matched elements by fading them to opaque. The .fadeIn() method animates the opacity of the matched elements. It is similar to the .fadeTo() method but that method does not unhide the element and can specify the final opacity level.</p>
+
+            <div class= "sub_group">
+                <h2> CSS (adding or removing a class for any HTML element/DOM)</h2>
+                <h3>.addClass</h3>
+
+                <button id="addClass">addClass</button>
+                <p class="addClass_p">Description: Adds the specified class(es) to each element in the set of matched elements. It's important to note that this method does not replace a class. It simply adds the class, appending it to any which may already be assigned to the elements.</p>
+            </div>
+            <div class="sub_group">
+                <h2> Manipulation (retrieving or setting value or text in any HTML element)</h2>
+                <h3>.before</h3>
+                <button id="before">before</button>
+                <p id="before_p">Description: Insert content, specified by the parameter, before each element in the set of matched elements. The .before() and .insertBefore() methods perform the same task. The major difference is in the syntax—specifically, in the placement of the content and target. With .before(), the content to be inserted comes from the method's argument: $(target).before(contentToBeInserted). With .insertBefore(), on the other hand, the content precedes the method and is inserted before the target, which in turn is passed as the .insertBefore() method's argument: $(contentToBeInserted).insertBefore(target).</p>
+
+                <h3>.after</h3>
+                <button id="after">after</button>
+                <p id="after_p">Description: Insert content, specified by the parameter, after each element in the set of matched elements. The .after() and .insertAfter() methods perform the same task. The major difference is in the syntax—specifically, in the placement of the content and target. With .after(), the content to be inserted comes from the method's argument: $(target).after(contentToBeInserted). With .insertAfter(), on the other hand, the content precedes the method and is inserted after the target, which in turn is passed as the .insertAfter() method's argument: $(contentToBeInserted).insertAfter(target).</p>
+
+                <h3>.append</h3>
+                <button id="append">append</button>
+                <p d="append_p">Description: Insert content, specified by the parameter, to the end of each element in the set of matched elements. The .append() method inserts the specified content as the last child of each element in the jQuery collection (To insert it as the first child, use .prepend()).</p>
+
+                <h3>.html</h3>
+                <button id="html">html</button>
+                <p id="html_p">Description: Get the HTML contents of the first element in the set of matched elements. This method uses the browser's innerHTML property. Some browsers may not return HTML that exactly replicates the HTML source in an original document. For example, Internet Explorer sometimes leaves off the quotes around attribute values if they contain only alphanumeric characters.</p>
+
+                <h3>.attr</h3>
+                <button id="attr">attr</button>
+                <p id="attr_p">Description: Get the value of an attribute for the first element in the set of matched elements. The .attr() method gets the attribute value for only the first element in the matched set. To get the value for each element individually, use a looping construct such as jQuery's .each() or .map() method.</p>
+
+                <h3>.val</h3>
+                <button type="button">val</button>
+                <p>Description: Get the current value of the first element in the set of matched elements. The .val() method is primarily used to get the values of form elements such as input, select and textarea. When called on an empty collection, it returns undefined.</p>
+
+                <h3>.text</h3>
+                <button type="button">text</button>
+                <p>Description: Get the combined text contents of each element in the set of matched elements, including their descendants.Unlike the .html() method, .text() can be used in both XML and HTML documents. The result of the .text() method is a string containing the combined text of all matched elements. (Due to variations in the HTML parsers in different browsers, the text returned may vary in newlines and other white space.) </p>
+
+            </div>
+            <div class="sub_group">
+                <h2> Events (functions to handle an event)</h2>
+                <h3>.click</h3>
+                <button type="button"></button>
+                <p>Description: Bind an event handler to the "click" JavaScript event, or trigger that event on an element. This method is a shortcut for .on( "click", handler ) in the first two variations, and .trigger( "click" ) in the third. The click event is sent to an element when the mouse pointer is over the element, and the mouse button is pressed and released. Any HTML element can receive this event</p>
+            </div>
+            <div class="sub_group">
+                <h2> Misc. Data storage</h2>
+                <h3>.data</h3>
+                <button type="button"></button>
+                <p>Description: Store arbitrary data associated with the matched elements. The .data() method allows us to attach data of any type to DOM elements in a way that is safe from circular references and therefore from memory leaks.</p>
+            </div>
+        </div>
+    </body>
+</html>
