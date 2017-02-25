@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ninja to Cat</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+           $(document).ready(function(){
+           $('img').click(function(){
+            //setting temporary variables for the attributes of both cat and ninja pics.
+            //attr. is used to GET the data
+             var temp=$(this).attr('data-alt-src');
+             var catPic=$(this).attr('src');
+            //console log variables to make sure that they're properly stored
+             console.log(temp)
+             console.log(catPic)
+            //use the .attr() method to SET the value into src from the temp
+               $(this).attr('src',temp)
+            //use .attr() method to SET the value of the data-alt-src back to the catPic.
+               $(this).attr('data-alt-src',catPic);
+            });
+        });
+    	</script>
+   <link rel="stylesheet" href="./ninjaToCat.css">
+   </head>
+   <body>
+     <h1>Turn the Cat into a Ninja...</h1>
+     <div id="maincontent">
+       <img src="./images/cat0.png" data-alt-src="./images/ninja0.png" alt="image1"/>
+       <img src="./images/cat1.png" data-alt-src="./images/ninja1.png" alt="image2"/>
+       <img src="./images/cat2.png" data-alt-src="./images/ninja2.png" alt="image3"/>
+       <img src="./images/cat3.png" data-alt-src="./images/ninja3.png" alt="image4"/>
+       <img src="./images/cat4.png" data-alt-src="./images/ninja4.png" alt="image5"/>
+     </div>
+  </body>
+</html>

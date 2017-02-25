@@ -1,0 +1,29 @@
+//reset
+*{
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+h1{
+    color: green;
+
+}
+
+body{
+    width:500px;
+    margin: 0px auto;
+    background-color: black;
+}
+
+img{
+  display:block;
+  width: 200px;
+  padding: 10px;
+}
+
+#maincontent{
+    background-color: gray;
+    padding: 60px;
+    display: inline-block;
+}
