@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>users</title>
+        <link rel="stylesheet" href="./users.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            //alert("hello!") <---- used to make sure jQuery is working properly
+
+            $('#submit_form').click(function(){
+                //define form inputs as variables to go into the new row.
+                var firstName = $("#firstName").val()
+                var lastName = $("#lastName").val()
+                var email = $("#email").val()
+                var contact = $("#contact").val()
+                //definte a variable for the collection of data that will go into new row.
+                var addRow = "<tr><td>" + firstName + "</td><td>" + lastName + "</td><td>" + email + "</td><td>" + contact + "</td></tr>"
+                //append new row to the table (id=my_table)
+                $("#my_table").append(addRow);
+
+                // console.log(firstName) <---- used to make sure variables are correctly defined
+                // console.log(lastName)
+                // console.log(email)
+                // console.log(contact)
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <h1>It Ain't Pretty But It Works!!</h1>
+            <div id="user_table">
+                <table id="my_table">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>E-mail Address</th>
+                            <th>Contact #</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        //new elements will be added here
+                    </tbody>
+                </table>
+            </div>
+            <h2>Add User</h2>
+            <div id="user_form">
+                <form action="index.html" method="post">
+                    <input type="text" id="firstName" placeholder="First Name">
+                    <input type="text" id="lastName" placeholder="Last Name">
+                    <input type="text" id="email" placeholder="E-mail">
+                    <input type="text" id="contact" placeholder="Contact #">
+                </form>
+            </div>
+            <button id="submit_form" type="button" name="submit">Add User</button>
+        </div>
+    </body>
+</html>
