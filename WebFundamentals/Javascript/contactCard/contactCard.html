@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>contactCards</title>
+        <link rel="stylesheet" href="./contactCard.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                //alert("jQuery is working properly")
+                $(document).on('click', 'button', function(){
+                //$('button').click(function(){
+                //create variables for each input from the forms
+                    var first = $("#firstName").val();
+                    var last = $("#lastName").val();
+                    var aboutMe = $("#aboutMe").val();
+                    //log variables to make sure theyre properly stored.
+                    console.log(first);
+                    console.log(last);
+                    console.log(aboutMe);
+                    //pass that variables into the function below.
+                    $('#contactCards').append('<div class=cards>'+ first + '<br>' + last + '</div>');
+                    //"<br>" + aboutMe +
+
+                    $(document).on('click', '.cards', function(){
+                        //alert("you clicked on dynamic cards")
+                        $('.cards').replaceWith('<div class = aboutMe_cards>' + aboutMe + '</div>');
+
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <form class="form_contact" action="index.html" method="post">
+                First Name: <input id="firstName" type="text" name="firstName"><br>
+                Last Name: <input id="lastName" type="text" name="lastName"><br>
+                Description: <textarea id="aboutMe" name="description" rows="8" cols="80" wrap="hard"></textarea>
+            </form>
+            <button type="button" name="addUsers">Add User</button>
+        <div id="contactCards">
+
+    </body>
+</html>
