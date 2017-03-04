@@ -22,7 +22,7 @@
                     $('#contactCards').append('<div class=cards>'+ first + '<br>' + last + '</div>');
                     //"<br>" + aboutMe +
 
-                    $(document).on('click', '.cards', function(){
+                    $('body').on('click', '.cards', function(){
                         //alert("you clicked on dynamic cards")
                         $('.cards').replaceWith('<div class = aboutMe_cards>' + aboutMe + '</div>');
 
