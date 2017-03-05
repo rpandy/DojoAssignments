@@ -6,14 +6,14 @@ $(document).ready(function() {
             var houseTitles = []
             for(var i = 1; i < res.titles.length; i++){
                 console.log(res.titles[i])
-                houseTitles += res.titles[i]+","
+                houseTitles += res.titles[i]+", "
             }
             var houseName = res.name
             var houseWords = res.words
-            var string = '<h2>House Details</h2>'
-            string += '<p>Name:</p>'+ houseName
-            string += '<p>Words:</p>' + houseWords
-            string += '<p>Titles:' + houseTitles +'</p>'
+            var string = '<h2>House Details:</h2>'
+            string += '<p>Name: '+ houseName + '</p>'
+            string += '<p>Words: ' + houseWords + '</p>'
+            string += '<p>Titles: ' + houseTitles +'</p>'
 
             console.log(string)
             console.log(res)
