@@ -1,0 +1,10 @@
+$(document).ready(function() {
+    $('form').click(function() {
+        // your code here (build up your url)
+        $.get(url, function(res) {
+            // your code here
+        }, 'json');
+        // don't forget to return false so the page doesn't refresh
+        return false;
+    });
+});
