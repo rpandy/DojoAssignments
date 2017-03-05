@@ -42,7 +42,7 @@ $(document).ready(function(){
             string+='<h4>Weight:</h4>'
             string+=weight
 
-            $('#pokedex_1').append(string);
+            $('#pokedex_1').html(string);
 
             console.log(res)
             console.log(pokeName)
@@ -50,3 +50,5 @@ $(document).ready(function(){
             console.log('Weight: ' + weight)
             console.log('Height: ' + height)
         }, "json");
+});
+});
