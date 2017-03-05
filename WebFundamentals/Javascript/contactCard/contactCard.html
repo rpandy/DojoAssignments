@@ -24,7 +24,7 @@
 
                     $('body').on('click', '.cards', function(){
                         //alert("you clicked on dynamic cards")
-                        $('.cards').replaceWith('<div class = aboutMe_cards>' + aboutMe + '</div>');
+                        $('.cards').toggle('<div class = aboutMe_cards>' + aboutMe + '</div>');
 
                     });
                 });

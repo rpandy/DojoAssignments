@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ASOIAF</title>
+    <script type="text/javascript" src="../../wf/OnlineWebFun_Lectures/Admin/Assets/jquery-3.1.1.js" ></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        console.log('you imported jquery correctly!');
+        $('button').click(function(){
+          $.get(
+            'http://anapioficeandfire.com/api/characters/583',
+            function(response) {
+              console.log(response);
+            },'json'
+          );
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <button type="button" name="button">Push</button>
+  </body>
+</html>

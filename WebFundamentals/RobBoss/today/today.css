@@ -1,0 +1,10 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+#tester{
+  height: 500px;
+  width: 500px;
+  background-color: rgb(127, 200, 215);
+}

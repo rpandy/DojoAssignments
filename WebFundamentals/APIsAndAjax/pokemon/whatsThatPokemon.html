@@ -5,49 +5,27 @@
         <title>Pokemon</title>
         <link rel="stylesheet" href="./whatsThatPokemon.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                //alert ('javascript is working')
-                //function to loop through and append images to photos div.
-                function catchEmAll(){
-                    for(var i = 1; i <= 151; i++){
-                        //DRASTICALLY improves readability from ('<img id=' + i + ' src="http://pokeapi.co/media/img/' + i + '.png">')
-                        var html_string = ''
-                        html_string +=  "<img id="
-                        html_string +=  i
-                        html_string +=  " src='http://pokeapi.co/media/img/"
-                        html_string +=  i
-                        html_string +=  ".png'>"
-
-                        console.log(html_string)
-
-                        $('#photos').append(html_string)
-                    }
-
-                }
-                catchEmAll();
-                //get individual info for pokemon
-                $(document).on('click','#1',function(){
-                    // $.get("http://pokeapi.co/api/v1/pokemon/" + i, function(res){
-                         var picture = '<img id=' + "1" + ' src="http://pokeapi.co/media/img/' + "1" + '.png">'
-                        $('#pokedex_1').append(picture)
-
-                    });
-                });
-            // });
+        <script type="text/javascript" src="./whatsThatPokemon.js">
         </script>
     </head>
     <body>
         <div id="container">
             <h1>Gotta Catch 'em All</h1>
             <div id="photos">
-
+                <!-- photos are appended here -->
             </div>
         </div>
         <div id="pokedex_section">
             <div class="pokedex">
                 <div id="pokedex_1">
-
+                    <!-- <h2>name</h2>
+                    <img src="http://pokeapi.co/media/img/1.png/">
+                    <h4>Types:</h4>
+                        <p></p>
+                    <h4>Height:</h4>
+                        <p></p>
+                    <h4>Weight:</h4>
+                        <p></p> -->
                 </div>
                 <div id="pokedex_2">
 
@@ -61,11 +39,3 @@
         </div>
     </body>
 </html>
-
-
-<!--
-//name string - $.get("http://pokeapi.co/api/v1/pokemon/1/", function(res) {console.log(res.descriptions[0].name);}, 'json');
-
-var picture = '<img id=' + i + ' src="http://pokeapi.co/media/img/' + i + '.png">'
-var html_string = ''
-html_string+= "<h2>" +  + "</h2>" -->

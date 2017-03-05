@@ -1,0 +1,29 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+body{
+  background-color: blue;
+}
+
+@media all and (max-width: 500px){
+  body{
+    background-color: chartreuse;
+
+  }
+}
+
+/*background colors*/
+.background-brown{
+  background-color: brown;
+}
+
+.background-blue{
+  background-color: blue;
+}
+
+/*text*/
+.text-color-blue{
+  text: blue;
+}
