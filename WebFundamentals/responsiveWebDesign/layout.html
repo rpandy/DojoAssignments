@@ -34,22 +34,38 @@
 
     .row { clear: both; }
 
-    /* Large sized screens */
-    @media only screen and (max-width: 851px) {
+    /* small sized screens */
+    @media only screen and (max-width: 650px) {
+    .twelve-s { width: 100%; }
         li{
             visibility: hidden;
         }
     }
-        .four-l { width: 33.333333%; }
-        .eight-l { width: 66.66666%; }
+    @media only screen and (mid-width: 651px) {
+        .four-m { width: 33.333333%; }
+        .five-m { width: 40%; }
+        .seven-m { width: 60%; }
+        .eight-m { width: 66.66666%; }
     }
+
+    @media only screen and (mid-width: 929px) {
+        #column_4{
+            width: 100%;
+            float: left;
+       }
+
+    }
+    .column { float: left; }
+
 
     </style>
     <body>
         <div id="container">
-            <div id="header">
-                <h1>Header</h1>
-                <h2>Subtitle</h2>
+            <div class="column twelve-s seven-m eight-l">
+                <div id="header">
+                    <h1>Header</h1>
+                    <h2>Subtitle</h2>
+                </div>
             </div>
             <ul>
                 <li><a href="$">Home</a></li>
@@ -61,28 +77,30 @@
                 <li><a href="$">Something more...</a></li>
                 <li><a href="$">Something even more</a></li>
             </ul>
-            <div id="main-content">
-                <div id="column 1">
-                    <h4>Coffee Ipsum</h4>
-                    <p>Skinny ristretto steamed trifecta robusta turkish whipped in cream. That id, bar breve affogato cappuccino affogato. Trifecta ut grounds single origin frappuccino medium froth skinny. Viennese, cappuccino brewed galão pumpkin spice saucer instant barista crema grounds.</p>
-                </div>
+            <div class="column twelve-s five-m four-l">
+                <div id="main-content">
+                    <div id="column_1">
+                        <h4>Coffee Ipsum</h4>
+                        <p>Skinny ristretto steamed trifecta robusta turkish whipped in cream. That id, bar breve affogato cappuccino affogato. Trifecta ut grounds single origin frappuccino medium froth skinny. Viennese, cappuccino brewed galão pumpkin spice saucer instant barista crema grounds.</p>
+                    </div>
 
-                <div id="column 2">
-                    <h4>Lorem Ipsum</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div id="column_2">
+                        <h4>Lorem Ipsum</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-                </div>
+                    </div>
 
-                <div id="column 3">
-                    <h4>Baby Ipsum</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div id="column_3">
+                        <h4>Baby Ipsum</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-                </div>
+                    </div>
 
-                <div id="column 4">
-                    <h4>Zombie Ipsum</h4>
-                    <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.</p>
+                    <div id="column_4">
+                        <h4>Zombie Ipsum</h4>
+                        <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.</p>
 
+                    </div>
                 </div>
             </div>
         </div>
