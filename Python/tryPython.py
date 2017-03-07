@@ -24,3 +24,9 @@ concat = str(num) + x
 concat = str(num),x
 
 print concat
+
+#string interpolation
+
+first_name = "robert"
+last_name = "pandy"
+print "my name is {} {}".format(first_name,last_name)
