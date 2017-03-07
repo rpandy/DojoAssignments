@@ -28,5 +28,6 @@ You should contain variables within a function when possible, but you can declar
 
 
 Why should I comment my code? Isn't commenting just a waste of time?
+You should comment your code because it helps you to remember the logic that you followed when you originally wrote it. It makes the code more readable and it also helps when others try to look through your code. Its good industry practice and it makes your code more of a pleasure to work with. 
 
 
