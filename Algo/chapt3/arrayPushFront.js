@@ -3,8 +3,13 @@
 // Do this without using any built-in array methods.
 
 function arrayPushFront(arr, num) {
-    console.log( arr + " before we add " + num + " to index 0")
-    arr[0] = (num)
-    console.log(arr)
+var newArr = []
+
+newArr.push(num)
+for (var i = 0; i < arr.length; i++) {
+    newArr.push(arr[i])
+}
+console.log(newArr)
+
 }
 arrayPushFront([1,2,3,4,5,6], 7)
