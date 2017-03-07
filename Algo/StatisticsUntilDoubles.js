@@ -9,7 +9,7 @@ function rollFunction() {
 }
 function statisticsUntilDoubles() {
 
-    var currentRoll = rollFunction();
+    var currentRoll = rollFunction(); // used a call back function for a different roll each time.
     var previousRoll = 0
 
     while (currentRoll != previousRoll) {
@@ -19,11 +19,9 @@ function statisticsUntilDoubles() {
             currentRoll = rollFunction()
             var previousRoll = temp
         }
-        console.log(currentRoll)
-        console.log(previousRoll)
-        
+        console.log("the current roll of " + currentRoll + " & the previous roll of " + previousRoll + " are not the same number")
     }
-    console.log("this is the current roll: " + currentRoll)
-    console.log("this is the previous roll: " + previousRoll)
+    console.log(currentRoll + " & " + previousRoll + " are finally the same number")
+
 }
 statisticsUntilDoubles()
