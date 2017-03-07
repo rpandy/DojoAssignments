@@ -5,7 +5,9 @@
 function arrayPushFront(arr, num) {
 var newArr = []
 
+//pushed the number into a new array
 newArr.push(num)
+//used a for loop to iterate through the original array and insert values into newArr.
 for (var i = 0; i < arr.length; i++) {
     newArr.push(arr[i])
 }
