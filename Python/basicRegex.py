@@ -10,17 +10,21 @@ pattern3 = r"\w*e\b"
 
 # . allows us to select a pattern with a b (random character in the middle) b
 pattern4 = r"b.b"
-# .+ allows us to select a pattern with a b (one or more random characters in the middle) b
 
+# .+ allows us to select a pattern with a b (one or more random characters in the middle) b
 pattern5 = r"b.+b"
 
-pattern6 = r"b.?b"
+# the A-Z, a-z and 0-9 ranges allow us to select a pattern with a b (any character including a 0 in the middle) b
+pattern6 = r"b[A-Za-z_][A-Za-z_0-9]b"
 
+# the parenthesis allow us to look for that specific pattern in that specific order.
 pattern7 = r"(aeiou)"
 
-pattern8 = r"b.b"
+#the brackets allow us to search for each individual character in the word "regular expression"
+pattern8 = r"[regular expression]"
 
-pattern9 = r"[a-z]*([a-z])\1([a-z])\2[a-z]*"
+#???? come back 
+pattern9 = r""
 
 import re
 def getMatchingWords(regex):
@@ -34,4 +38,4 @@ def getMatchingWords(regex):
         if re.search(regex, word):
             matches.append(word)
     return matches
-print getMatchingWords(pattern9)
+print getMatchingWords(pattern8)
