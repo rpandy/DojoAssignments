@@ -3,13 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>Survey Results</title>
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_style_sheet.css') }}"> -->
     </head>
     <body>
-        <h3>Submitted Form</h3>
-        <p>Name: {{ name }}</p>
-        <p>Location: {{ location }}</p>
-        <p>Favorite Language: {{ fav_language }}</p>
-        <p>Comments: {{ comments }}</p>
+        <div id="container">
+            <h3>Submitted Form</h3>
+            <p>Name: {{ name }}</p>
+            <p>Location: {{ location }}</p>
+            <p>Favorite Language: {{ fav_language }}</p>
+            <p>Comments: {{ comments }}</p>
+        </div>
         <input type="submit" value="Go Back">
     </body>
 </html>

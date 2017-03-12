@@ -3,30 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title>Dojo Survey</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style_sheet.css')}}">
     </head>
     <body>
-        <form action="/result" method="post">
-            Name: <input type="text" name="name">
-            Dojo Location: <select name="location">
-                <option value="Silicon Valley">Silicon Valley</option>
-                <option value="Seattle">Seattle</option>
-                <option value="Los Angeles">Los Angeles</option>
-                <option value="Dallas">Dallas</option>
-                <option value="Washington DC">Washington DC</option>
-                <option value="Chicago">Chicago</option>
-                <option value="Berkeley">Berkeley</option>
-                <option value="Orange County">Orange County</option>
-            </select>
-            Favorite Language: <select name="fav_language">
-                <option value="Python">Python</option>
-                <option value="Mean">Mean</option>
-                <option value="LAMP">LAMP</option>
-                <option value="iOS Swift">iOS Swift</option>
-                <option value="Ruby on Rails">Ruby on Rails</option>
-                <option value="C#/ .NET CORE">C#/ .NET CORE</option>
-            </select>
-            Comments (Optional): <textarea name="comments" rows="8" cols="80"></textarea>
-            <input type="submit" value="Submit">
-        </form>
+        <div id="container">
+            <form action="/result" method="post">
+                Name: <input type="text" name="name"><br>
+                Dojo Location: <select name="location">
+                    <option value="Silicon Valley">Silicon Valley</option>
+                    <option value="Seattle">Seattle</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="Dallas">Dallas</option>
+                    <option value="Washington DC">Washington DC</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="Berkeley">Berkeley</option>
+                    <option value="Orange County">Orange County</option>
+                </select><br>
+                Favorite Language: <select name="fav_language">
+                    <option value="Python">Python</option>
+                    <option value="Mean">Mean</option>
+                    <option value="LAMP">LAMP</option>
+                    <option value="iOS Swift">iOS Swift</option>
+                    <option value="Ruby on Rails">Ruby on Rails</option>
+                    <option value="C#/ .NET CORE">C#/ .NET CORE</option>
+                </select><br>
+                Comments (Optional):<br>
+                <textarea name="comments" rows="8" cols="80"></textarea>
+                <input type="submit" value="Submit"><br>
+            </form>
+        </div>
     </body>
 </html>
