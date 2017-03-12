@@ -9,7 +9,7 @@ def index():
 def survey_submission():
     #print request.form
     user = request.form
-    print user['name']
+    #print user['name']
     name = request.form['name']
     location = request.form['location']
     fav_language = request.form['fav_language']

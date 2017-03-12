@@ -19,4 +19,7 @@ def create_user():
     email = request.form['email']
     #redirects back to the '/' route
     return redirect('/')
+@app.route('/show')
+def show_user():
+    return render_template('user.html', name='Jay', email='kpatel@codingdojo.com')
 app.run(debug=True) #runs our server redirects back to the '/' route
