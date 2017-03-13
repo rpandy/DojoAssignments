@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Index page for Hello Kitty</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style_sheet.css')}}">
+        <script type="text/javascript" src=" {{ url_for('static', filename='js/my_script.js') }}"></script>
+    </head>
+    <body>
+        <h1>Hello Kitty</h1>
+        <form action="/users" method="post">
+            <input type="text" name="first_name" placeholder="First Name">
+            <input type="email" name="email" placeholder="Joe@somethinghere.net">
+            <button type="submit" name="button">Send Me!</button>
+        </form>
+    </body>
+</html>
