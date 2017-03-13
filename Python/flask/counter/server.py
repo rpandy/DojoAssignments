@@ -11,11 +11,12 @@ def index():
     #     session['counter'] += 1
     # else:
     #     session['counter'] = 1
-
     try:
         session['counter'] += 1
     except:
         session['counter'] = 1
     return render_template('index.html') #index is rendered
-#session persists
+#function to reset the counter
+
+
 app.run(debug=True, port=8000)
