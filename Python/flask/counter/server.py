@@ -22,4 +22,11 @@ def clear():
     session.clear()
     return redirect('/')
 
+@app.route('/addTwo')
+def addTwo():
+    # only added 1 extra tick because counter will be
+    # incremented automatically following the redirect.
+    session['counter'] += 1
+    return redirect('/')
+
 app.run(debug=True, port=8000)
