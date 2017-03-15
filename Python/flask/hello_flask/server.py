@@ -27,7 +27,7 @@ def index():
 @app.route('/users', methods = ["POST"])
 def new_user():
     if len(request.form['first_name']) == 0:
-        flash('FILLE ME IN! I need a name!')
+        flash('FILL ME IN! I need a name!')
         return redirect('/')
     print request.form["first_name"]
     print request.form['id']
