@@ -17,6 +17,9 @@ def index():
         session['counter'] = 1
     return render_template('index.html') #index is rendered
 #function to reset the counter
-
+@app.route('/clear')
+def clear():
+    session.clear()
+    return redirect('/')
 
 app.run(debug=True, port=8000)

@@ -8,7 +8,14 @@
     </head>
     <body>
         <h1>Hello Kitty</h1>
+        {{ session['counter']}}
+        {% with messages = get_flashed_messages()%}
+            {% for message in messages%}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endwith %}
         <form action="/users" method="post">
+            <input type="hidden" name="id" value="{{session['counter']}}">
             <input type="text" name="first_name" placeholder="First Name">
             <input type="email" name="email" placeholder="Joe@somethinghere.net">
             <button type="submit" name="button">Send Me!</button>

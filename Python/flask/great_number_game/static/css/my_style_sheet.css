@@ -1,0 +1,29 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+body{
+    display: block;
+    width: 970px;
+    margin: 250px;
+    background-color: lightgray;
+}
+
+#container{
+    width: 500px;
+    height: 500px;
+    display: inline-block;
+    text-align: center;
+    padding: 50px;
+    background-color: darkgray;
+}
+
+h1{
+    margin-bottom: 30px;
+}
+
+h3{
+    padding: 20px;
+}
