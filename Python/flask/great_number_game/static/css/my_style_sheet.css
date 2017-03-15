@@ -6,8 +6,8 @@
 
 body{
     display: block;
-    width: 970px;
-    margin: 250px;
+    width: 500px;
+    margin: 150px;
     background-color: lightgray;
 }
 
@@ -17,6 +17,7 @@ body{
     display: inline-block;
     text-align: center;
     padding: 50px;
+    margin-left: 300px;
     background-color: darkgray;
 }
 
@@ -26,4 +27,19 @@ h1{
 
 h3{
     padding: 20px;
+}
+
+.wrong{
+    background-color: red;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    font-size: 24;
+    font: bold;
+}
+
+
+#correct{
+    background-color: green;
+
 }

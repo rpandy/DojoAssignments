@@ -7,12 +7,14 @@ app.secret_key = 'SECRET'
 import random
 random_number = random.randrange(1,101)
 
+
 @app.route('/')
 def index():
     #import random
     #random_number = random.randrange(0,101)
     #print random_number
     session['random'] = random_number
+    session['guess'] = 0
     print 'the randomly generated number is:', session['random']
 
 
@@ -23,8 +25,8 @@ def index():
 def guess_submission():
     #print request.form
     session['guess'] = request.form['guess']
+    guess = session['guess']
     print 'the guess is:', session['guess']
-    #guess will not print in HTML doc because it is a POST request
     return redirect('/')
 
 
@@ -33,12 +35,27 @@ def guess_submission():
 def test_logic():
     print 'random is', session['random']
     print 'guess is', session['guess']
+    #print 'answer is', session ['answer']
+    random = session['random']
+    guess = session['guess']
 
-    if session['random'] > session['guess']:
-        print session['random'], 'is greater than', session['guess']
-    elif session['random'] < session['guess']:
-        print session['random'], 'is less than', session['guess']
+    # if random < guess:
+    #     print 'testing testing 123'
+    # elif random > guess:
+    #     print 'hahahahahahahahahah'
+    # else:
+    #     print 'CORRRRRRRRRECT'
+
+    if random < guess:
+        session['answer'] = 'guess is too high'
+        print session['answer']
+    elif random > guess:
+        session['answer'] = 'guess is too low'
+        print session['answer']
     return redirect('/')
 #if statement comparing the guess to session['random']
-
+@app.route('/clear')
+def clear():
+    session.clear()
+    return redirect('/')
 app.run(debug=True)

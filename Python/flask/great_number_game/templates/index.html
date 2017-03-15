@@ -22,13 +22,15 @@
     <!-- if statement comparing the guess to session['random'] -->
             <div id="game_results">
             {% if session['random'] < session['guess'] %}
-                <p class='wrong'> {{ session['guess'] }} is too low!</p>
+                <p class='wrong'> {{ answer }} </p>
             {% elif session['random'] > session['guess'] %}
-                <p class='wrong'> {{ session['guess'] }} is too high!</p>
+                <p class='wrong'> {{ answer }}</p>
             {% else %}
                 <p id='correct'>CORRECT!! {{ session['guess'] }} is the number</p>
             {% endif %}
             </div>
+            <a href="/clear">Clear Session</a>
+            <a href="/test">Test output in terminal</a>
         </div>
     </body>
 </html>
