@@ -12,20 +12,28 @@ random_number = random.randrange(1,101)
 def index():
     #print random_number
     session['random'] = random_number
+
+    #print session['guess']
     #print 'the randomly generated number is:', session['random']
-
     return render_template('index.html', random = session['random'])
-
 
 @app.route('/', methods=['POST'])
 def guess_submission():
     #print request.form
-    # session['guess'] = 0
     session['guess'] = request.form['guess']
-    #guess = session['guess']
+    guess = session['guess']
     print 'the guess is:', session['guess']
     print 'the randomly generated number is:', session['random']
 
+    if int(session['random']) < int(session['guess'] ):
+        session['answer'] = 'Guess is too high'
+        print session['answer']
+    elif int(session['random']) > int(session['guess'] ):
+        session['answer'] = 'Guess is too low'
+        print session['answer']
+    else:
+         session['answer'] = 'CORRECT!'
+         print session['answer']
     return redirect('/')
 
 
@@ -38,19 +46,15 @@ def test_logic():
     random = session['random']
     guess = session['guess']
 
-    if random < guess:
-        print 'random < guess'
-    elif random > guess:
-        print 'random > guess'
+    if int(random) < int(guess):
+        session['answer'] = 'Guess is too high'
+        print session['answer']
+    elif int(random) > int(guess):
+        session['answer'] = 'Guess is too low'
+        print session['answer']
     else:
-        print 'random = guess'
-
-    # if random < guess:
-    #     session['answer'] = 'guess is too high'
-    #     print session['answer']
-    # elif random > guess:
-    #     session['answer'] = 'guess is too low'
-    #     print session['answer']
+         session['answer'] = 'CORRECT!'
+         print session['answer']
     return redirect('/')
 #if statement comparing the guess to session['random']
 @app.route('/clear')
@@ -58,5 +62,6 @@ def clear():
     session.clear()
     #guess is set to 0 after session is cleared
     session['guess'] = 0
+    session['random'] = random_number
     return redirect('/')
 app.run(debug=True)

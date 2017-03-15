@@ -38,8 +38,16 @@ h3{
     font: bold;
 }
 
-
 #correct{
     background-color: green;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    font-size: 24;
+    font: bold;
+}
 
+p{
+    padding: 100px;
+    margin-top: 200px;
 }

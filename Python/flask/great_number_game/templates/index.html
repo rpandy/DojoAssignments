@@ -17,19 +17,22 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <p>Random generated number: {{ session['random'] }}</p>
-            <p>guessed number: {{ session['guess'] }}</p>
+            <!-- <p>Random generated number: {{ session['random'] }}</p>
+            <p>guessed number: {{ session['guess'] }}</p> -->
+
     <!-- if statement comparing the guess to session['random'] -->
             <div id="game_results">
-            {% if session['random'] == session['guess'] %}
-                <p id='correct'>CORRECT!! {{ session['guess'] }} is the number</p>
-            {% elif session['random'] > session['guess'] %}
-                <p class='wrong'> {{ answer }}</p>
+            {% if session['guess'] == 0 %}
+                <p id="begin"> Lets Play!!!</p>
+            {% elif session['answer'] == 'Guess is too low' %}
+                <p class='wrong'> {{ session['guess'] }} is too low</p>
+            {% elif session['answer'] == 'Guess is too high' %}
+                <p class='wrong'> {{ session['guess'] }} is too high</p>
             {% else %}
-                <p class='wrong'> {{ answer }} </p>
+                <p id='correct'>CORRECT!! {{ session['guess'] }} is the number</p>
             {% endif %}
             </div>
-            <a href="/clear">Clear Session</a>
+            <a href="/clear">Restart Game</a>
             <a href="/test">Test output in terminal</a>
         </div>
     </body>
