@@ -18,7 +18,8 @@ def survey_submission():
     #using jinja context dictionary to send variables to the HTML template
     #return render_template("results.html", name = name, location = location, fav_language = fav_language, comments = comments)
     return render_template("results.html", user=user)
-# @app.route('/')
-# def goback():
-#      return redirect('/')
+
+@app.route('/')
+def goback():
+     return redirect('/')
 app.run(debug=True, port=8000)

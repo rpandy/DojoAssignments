@@ -2,22 +2,33 @@
     padding: 0px;
     margin: 0px;
     border: 0px;
+    background-color: #c9d8c5;
 }
 
 body{
     width: 800px;
-    border: 4px black solid;
-    margin: 20px;
+    border: 4px #a8b6bf solid;
+    margin: 50px 0px 0px 200px;
+    padding: 70px;
+    background-color: #edd9c0;
 }
 
 #container{
     width: 500px;
     margin: 50px;
-    padding: 20px;
-    background-color: grey;
+    padding: 5px;
+    background-color: #7d4627;
 }
 
 h3{
     margin-bottom: 20px;
     text-decoration: underline;
+}
+
+p{
+    margin: 15px;
+}
+
+a{
+    margin: 15px;
 }
