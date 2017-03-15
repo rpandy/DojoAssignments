@@ -21,12 +21,12 @@
             <p>guessed number: {{ session['guess'] }}</p>
     <!-- if statement comparing the guess to session['random'] -->
             <div id="game_results">
-            {% if session['random'] < session['guess'] %}
-                <p class='wrong'> {{ answer }} </p>
+            {% if session['random'] == session['guess'] %}
+                <p id='correct'>CORRECT!! {{ session['guess'] }} is the number</p>
             {% elif session['random'] > session['guess'] %}
                 <p class='wrong'> {{ answer }}</p>
             {% else %}
-                <p id='correct'>CORRECT!! {{ session['guess'] }} is the number</p>
+                <p class='wrong'> {{ answer }} </p>
             {% endif %}
             </div>
             <a href="/clear">Clear Session</a>
