@@ -1,0 +1,50 @@
+*{
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+#header{
+    display: block;
+    background-color: purple;
+    padding: 20px;
+    font-style: italic;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+}
+
+body{
+    width: 970px auto;
+    /*background-color: gray;*/
+    padding: 30px;
+    margin: 20px;
+}
+
+.locations{
+    width: 210px;
+    height: 100px;
+    background-color: grey;
+    display: inline-block;
+    vertical-align: top;
+    border: 2px black solid;
+    padding: 15px;
+    margin: 10px 0px 10px 70px;;
+    border-radius: 10px;
+}
+
+.locations p, h3{
+    margin-top: 20px;
+}
+
+.locations p, h3, input{
+    text-align: center
+}
+
+#activities{
+    display: block;
+    background-color: purple;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}

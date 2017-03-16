@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ninja Gold</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/my_style_sheet.css')}}">
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <p>Gold: {{ session['gold_total'] }} </p>
+            </div>
+            <div id="maincontent">
+                <div class="locations">
+                    <h3>Farm</h3>
+                    <p>(earns 10 - 20 gold coins)</p>
+                    <form action="/process_farm" name="farm" method="post">
+                        <input type="hidden" name="building" value="farm"/>
+                        <input type="submit" value="Get Gold!" />
+                    </form>
+                </div>
+                <div class="locations">
+                    <h3>Cave</h3>
+                    <p>(earns 5 - 10 gold coins)</p>
+                    <form action="/process_cave" name="cave" method="post">
+                        <input type="hidden" name="building" value="cave" />
+                        <input type="submit" value="Get Gold!" />
+                    </form>
+                </div>
+                <div class="locations">
+                    <h3>House</h3>
+                    <p>(earns 2-5 gold coins)</p>
+                    <form action="/process_house" name="house" method="post">
+                        <input type="hidden" name="building" value="house" />
+                        <input type="submit" value="Get Gold!" />
+                    </form>
+                </div>
+                <div class="locations">
+                    <h3>Casino</h3>
+                    <p>(earns/takes -50 - 50 gold coins)</p>
+                    <form action="/process_casino" name="casino" method="post">
+                        <input type="hidden" name="building" value="casino" />
+                        <input type="submit" value="Get Gold!" />
+                    </form>
+                </div>
+                <div id="activities">
+                    <p>{{ session['activities'] }}</p>
+                </div>
+                <a href="/clear">Restart Game!</a>
+            </div>
+        </div>
+    </body>
+</html>
