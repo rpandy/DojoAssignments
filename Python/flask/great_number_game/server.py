@@ -38,6 +38,7 @@ def guess_submission():
 
 
 #create another route that runs function after guess is submitted
+#test functionality in terminal
 @app.route('/test')
 def test_logic():
     print 'random is', session['random']
@@ -56,12 +57,15 @@ def test_logic():
          session['answer'] = 'CORRECT!'
          print session['answer']
     return redirect('/')
-#if statement comparing the guess to session['random']
+
 @app.route('/clear')
 def clear():
     session.clear()
     #guess is set to 0 after session is cleared
     session['guess'] = 0
-    session['random'] = random_number
+    #new random numbe is generated
+    import random
+    session['random'] = random.randrange(1,101)
+    print 'new random number is', session['random']
     return redirect('/')
 app.run(debug=True)

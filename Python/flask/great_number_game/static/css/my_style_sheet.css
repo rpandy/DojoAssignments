@@ -7,7 +7,7 @@
 body{
     display: block;
     width: 500px;
-    margin: 150px;
+    margin: 50px 0px 0px 100px;;
     background-color: lightgray;
 }
 
@@ -26,28 +26,29 @@ h1{
 }
 
 h3{
-    padding: 20px;
+    padding: 10px;
 }
 
 .wrong{
     background-color: red;
     display: inline-block;
+    padding: 10px;
+    margin-top: 50px;
     width: 200px;
-    height: 200px;
+    height: 160px;
     font-size: 24;
-    font: bold;
 }
 
 #correct{
     background-color: green;
     display: inline-block;
+    padding: 10px;
+    margin-top: 50px;
     width: 200px;
-    height: 200px;
+    height: 160px;
     font-size: 24;
-    font: bold;
 }
 
 p{
-    padding: 100px;
     margin-top: 200px;
 }
