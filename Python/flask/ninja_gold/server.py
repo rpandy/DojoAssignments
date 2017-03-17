@@ -3,11 +3,11 @@ app = Flask(__name__)
 app.secret_key = 'SECRETSSSSSSSS'
 import random, time, datetime
 
+#
 time_stamp = time.time()
 print time_stamp
-time_stamp = datetime.datetime.fromtimestamp(time_stamp).strftime('%Y-%m-%d %H:%M:%S')
+time_stamp = datetime.datetime.fromtimestamp(time_stamp).strftime('%Y-%m-%d %H:%M')
 print time_stamp
-
 
 @app.route('/')
 def index():
@@ -20,11 +20,6 @@ def index():
         session['activities_list_casino'] = []
 
     print "Index route for Ninja Gold"
-        # total = session['gold_total']
-        # print 'gold total is', total
-    # if 'activities' not in session:
-    #     session['activities'] = []
-    #     print session['activities']
 
     return render_template('index.html')
 
@@ -37,6 +32,7 @@ def farm():
     random_gold_casino = random.randrange(-50,50+1)
     #check to see if farm is saved in session already
     #if not then we set it to 0
+    # time_stamp = datetime.datetime.fromtimestamp(time_stamp).strftime('%Y-%m-%d %H:%M')
     if 'farm_gold' not in session:
         session['farm_gold'] = 0
         session['location'] = 'farm - '
@@ -154,8 +150,9 @@ def house():
 def casino():
     #generate random numbers
     random_gold_casino = random.randrange(-50,50+1)
-    #check to see if house is saved in session already
-    #if not then we set it to 0
+    #check to see if casino is saved in session already
+    #if not then we set it to 0 along with o
+
     if 'casino_gold' not in session:
         session['casino_gold'] = 0
         session['location'] = 'casino - '

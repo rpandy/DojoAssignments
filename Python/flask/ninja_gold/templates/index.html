@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Ninja Gold</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/my_style_sheet.css')}}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/materialize.css')}}"> -->
     </head>
     <body>
         <div id="container">
@@ -43,9 +44,8 @@
                         <input type="submit" value="Get Gold!" />
                     </form>
                 </div>
-
+                <h4>Activities:</h4>
                 <div id="activities">
-                    <h4>Activities</h4>
                     {% for activities in session['activities_list'] %}
                     <p> {{ activities['farm_gold'] }} {{ activities['string'] }} {{ activities['location'] }} {{ activities['time'] }}</p>
                     {% endfor %}
