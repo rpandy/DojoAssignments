@@ -11,7 +11,7 @@ def index():
         total = session['gold_total']
         print 'gold total is', total
     if 'activities' not in session:
-        session['activities'] = "Lets make some money!"
+        session['activities'] = []
         print session['activities']
 
     return render_template('index.html')
@@ -23,6 +23,7 @@ def farm():
     #if not then we set it to 0
     if 'farm' not in session:
         session['farm'] = 0
+        session['activities_list'] = []
     #set session['farm'] to the random number previously generated
     session['farm'] = random_gold_farm
     print 'farm', session['farm']
@@ -33,7 +34,8 @@ def farm():
 
     #append to activities display
     session['activities'] = "you earned",session['farm'],"on the farm!"
-
+    session['activities_list'].append(random_gold_farm)
+    print session['activities_list']
     return redirect('/')
 
 @app.route('/process_cave', methods=['POST'])

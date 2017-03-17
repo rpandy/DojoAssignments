@@ -3,9 +3,14 @@
 from flask import Flask, render_template, request, redirect, session, flash
 # Global variable __name__ tells Flask whether or not we
 # are running the file directly or importing it as a module.
+import re
 app = Flask(__name__)
 app.secret_key = "I<3Secrets"
 
+#first part is checking for allowable characters.
+#when regex uses the period its seen as a specialized character. This is done with backslash "\"
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]*$')
+NAME_REGEX = re.compile(r'^[a-zA-Z]{2,}$')
 
 #each route should do one thing.
 #Either post information or gather information to send elsewhere
@@ -16,9 +21,10 @@ app.secret_key = "I<3Secrets"
 def index():
     if "counter" not in session:
         session['counter'] = 0
+        session['name_list'] = []
     print "Im in my route for index!"
     age = 33
-    job = "coder"
+    job = "who knows"
     #name you expect variable to be on template and what the variable will be equal to
 
     # Render the template and return it!
@@ -26,19 +32,47 @@ def index():
 
 @app.route('/users', methods = ["POST"])
 def new_user():
-    if len(request.form['first_name']) == 0:
+    # if len(request.form['first_name']) == 0:
+    #keep an error count
+    #LOOPING THROUGH A DICTIONARY
+    print request.form
+    for key in request.form:
+        print "they key is", key, "and the value is", request.form[key]
+    errors = 0
+    if not NAME_REGEX.match(request.form['first_name']):
         flash('FILL ME IN! I need a name!')
+        errors += 1
+    if not EMAIL_REGEX.match(request.form['email']):
+        flash("email must be a valid email")
+        errors+=1
+    if errors:
         return redirect('/')
+    #another way to check for flash errors/ validation!
+    #if '_flashes' in session:
+        #return redirect
     print request.form["first_name"]
     print request.form['id']
+    user = {
+        'first_name': request.form['first_name'],
+        'email': request.form['email'],
+        'id': session['counter']
+    }
+
+    session['name_list'].append(user) #creating a list of dictionaries
+    session['first_name'] = request.form['first_name']
     session['counter'] += 1
-    # print session['first_name']
     return redirect('/success')
 
 @app.route('/success')
 def showUser():
-    # print "in sucess route", session['first_name']
+    print "in sucess route", session['name_list']
     return render_template('success.html')
+
+@app.route('/user/<user_id>')
+def one_user(user_id): #passing in the variable (user_id). Looking for a route parameter
+    user = session['name_list'][int(user_id)]
+    print user
+    return render_template("/oneuser.html", user = user)
 
 @app.route("/clear")
 def clear_session():

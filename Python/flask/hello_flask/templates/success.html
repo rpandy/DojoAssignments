@@ -5,7 +5,31 @@
         <title>Success</title>
     </head>
     <body>
-        <h1>Hello.. you've posted {{ session['counter'] }}</h1>
+        <h1>Hello {{ session['first_name'] }}!! you are number {{ session["counter"] }} to be added to our name list</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Email</th>
+                    <th>User ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for user in session ['name_list'] %}
+                <tr>
+                    <td>{{ user['first_name'] }}</td>
+                    <td> {{ user['email']}}</td>
+                    <td> {{ user['id']}}</td>
+                    <td> <a href="/user/{{ user['id'] }}">Show User</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        {% for name in session['name_list'] %}
+            <p> {{ name }} </p>
+        {% endfor %}
         <a href="/">Home</a>
     </body>
 </html>
