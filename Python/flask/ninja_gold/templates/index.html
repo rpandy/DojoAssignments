@@ -43,8 +43,21 @@
                         <input type="submit" value="Get Gold!" />
                     </form>
                 </div>
+
                 <div id="activities">
-                    <p>{{ session['activities'] }}</p>
+                    <h4>Activities</h4>
+                    {% for activities in session['activities_list'] %}
+                    <p> {{ activities['farm_gold'] }} {{ activities['string'] }} {{ activities['location'] }} {{ activities['time'] }}</p>
+                    {% endfor %}
+                    {% for activities in session['activities_list_cave'] %}
+                    <p> {{ activities['cave_gold'] }} {{ activities['string'] }} {{ activities['location'] }} {{ activities['time'] }}</p>
+                    {% endfor %}
+                    {% for activities in session['activities_list_house'] %}
+                    <p> {{ activities['house_gold'] }} {{ activities['string'] }} {{ activities['location'] }} {{ activities['time'] }}</p>
+                    {% endfor %}
+                    {% for activities in session['activities_list_casino'] %}
+                    <p> {{ activities['casino_gold'] }} {{ activities['string'] }} {{ activities['location'] }} {{ activities['time'] }}</p>
+                    {% endfor %}
                 </div>
                 <a href="/clear">Restart Game!</a>
             </div>
