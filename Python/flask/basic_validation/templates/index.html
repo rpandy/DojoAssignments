@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Basic Validation Example</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css')}}">
+    </head>
+    <body>
+        <h1>Enter a Valid(Any) Name!</h1>
+        <!-- The with messages here helps us declare a variable in our template that we can use within a specific scope. -->
+        {% with messages = get_flashed_messages() %}
+        <!-- Check if there are even any messages that came back from the get_flashed_messages() function -->
+            {% if messages %}
+            <!-- Loop through all messages -->
+                {% for message in messages %}
+                <!-- Print the messages one by one each in a paragraph tag -->
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/process" method="POST">
+            Name:<input type="text" name="name">
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
