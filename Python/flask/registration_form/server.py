@@ -5,6 +5,7 @@ import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
 NAME_REGEX = re.compile(r'^[a-zA-Z]*$')
 PASSWORD_LENGTH = re.compile(r'^.{,8}$')
+PASSWORD_STRENGTH = re.compile(r'^(?=.*[A-Z])(?=.*[0-9])')
 app = Flask(__name__)
 app.secret_key = "SECRETSSSSS"
 
@@ -46,20 +47,25 @@ def form_submission():
     #validation - email should be a valid email address
     if not EMAIL_REGEX.match(request.form['email']):
         flash('Invalid email address')
-        errors +=1
+        errors += 1
 
     #validation - password should be no longer than 8 characters
     if not PASSWORD_LENGTH.match(request.form['password']):
         flash('Password should not be longer than 8 characters')
-
+        errors += 1
     #validation - Password and Password Confirmation should match
     if not request.form['password'] == request.form['password_confirmation']:
         flash('Password & Password Confirmation do not match')
+        errors += 1
 
-    if errors:
+    #validation - Password should contain one uppercase and one number
+    if not PASSWORD_STRENGTH.match(request.form['password']):
+        flash('Password must contain at least one uppercase & one numberic value')
+
+    if errors == 0:
         #print "ERROR STATEMENT WORKS"
+        flash('Thank you for submitting your info!')
         return redirect('/')
-
 
     return redirect('/')
 app.run(debug=True, port=8000)
