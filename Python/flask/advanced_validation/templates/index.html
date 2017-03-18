@@ -9,13 +9,13 @@
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in message %}
-                    <p>{{messages}}</p>
+                    <p>{{ messages }}</p>
                 {% endfor %}
             {% endif %}
         {% endwith %}
         <form action="/process" method="POST">
-            Email:<input type="submit" value="Submit">
-            <input type="Submit" value="Submit">
+            Email:<input type="text" name="email">
+            <input type="submit" value="Submit">
         </form>
     </body>
 </html>

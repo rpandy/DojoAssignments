@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, session, flash
 #the "re" module will let us perform some regular expression operations
 import re
 #create a regular expression object that we can run operations on
-EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z*$')
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
 app = Flask(__name__)
 app.secret_key = "SECRETSSSSS"
 
@@ -14,7 +14,7 @@ def index():
 @app.route('/process', methods=['POST'])
 def submit():
     if len(request.form['email']) < 1:
-        flask("Email cannot be blank!")
+        flash("Email cannot be blank!")
     elif not EMAIL_REGEX.match(request.form['email']):
         flash("Invalid Email Address!")
     else:
