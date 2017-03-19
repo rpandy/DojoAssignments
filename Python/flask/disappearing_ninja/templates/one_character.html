@@ -3,18 +3,39 @@
     <head>
         <meta charset="utf-8">
         <title>One Character</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/one_character_style_sheet.css')}}">
     </head>
     <body>
         {% if ninja_id == 'Leonardo' %}
-            <img src="{{ url_for('static', filename='images/leonardo.jpg') }}" alt="Leonardo">
+        <div class="Heros">
+            <h3>Leads</h3>
+            <img src="{{ url_for('static', filename='images/leonardo.jpg') }}" alt="Leonardo"><br>
+            <a href="/ninja">Back</a>
+        </div>
         {% elif ninja_id == 'Donatello' %}
-            <img src="{{ url_for('static', filename='images/donatello.jpg') }}" alt="Donatello">
+        <div class="Heros">
+            <h3>Does machines...</h3>
+            <img src="{{ url_for('static', filename='images/donatello.jpg') }}" alt="Donatello"><br>
+            <a href="/ninja">Back</a>
+        </div>
         {% elif ninja_id == 'Raphael' %}
-            <img src="{{ url_for('static', filename='images/raphael.jpg') }}" alt="Raphael">
+        <div class="Heros">
+            <h3>Cool but rude...</h3>
+            <img src="{{ url_for('static', filename='images/raphael.jpg') }}" alt="Raphael"><br>
+            <a href="/ninja">Back</a>
+        </div>
         {% elif ninja_id == 'Michelangelo' %}
-            <img src="{{ url_for('static', filename='images/michelangelo.jpg') }}" alt="Michelangelo">
+        <div class="Heros">
+            <h3>A party dude...</h3>
+            <img src="{{ url_for('static', filename='images/michelangelo.jpg') }}" alt="Michelangelo"><br>
+            <a href="/ninja">Back</a>
+        </div>
         {% else %}
+        <div class="Heros">
+            <h3>Has an affinity for yellow</h3>
             <img src="{{ url_for('static', filename='images/notapril.jpg') }}" alt="April">
+            <a href="/ninja">Back</a>
+        </div>
         {% endif %}
     </body>
 </html>

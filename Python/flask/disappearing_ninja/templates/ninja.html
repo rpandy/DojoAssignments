@@ -3,31 +3,35 @@
     <head>
         <meta charset="utf-8">
         <title>Ninja</title>
-        <link rel="stylesheet" type="text/css" href=" url_for('static', filename='css/my_style_sheet.css') ">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style_sheet.css')}}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/materialize.css')}}"> -->
+
     </head>
     <body>
         <div id="header">
             <h1>Teenage Mutant Ninja Turtles</h1>
         </div>
-        <div class="Heros">
-            <h3>Leonardo</h3>
-            <img src="{{ url_for('static', filename='images/leonardo.jpg') }}" alt="Leonardo">
-            <a href="/ninja/{{ turtles['blue'] }}">More on Leonardo</a>
-        </div>
-        <div class="Heros">
-            <h3>Donatello</h3>
-            <img src="{{ url_for('static', filename='images/donatello.jpg') }}" alt="Donatello">
-            <a href="/ninja/{{turtles['purple'] }}">More on Donatello</a>
-        </div>
-        <div class="Heros">
-            <h3>Raphael</h3>
-            <img src="{{ url_for('static', filename='images/raphael.jpg') }}" alt="Raphael">
-            <a href="/ninja/{{turtles['red'] }}">More on Raphael</a>
-        </div>
-        <div class="Heros">
-            <h3>Michelangelo</h3>
-            <img src="{{ url_for('static', filename='images/michelangelo.jpg') }}" alt="Michaelangelo">
-            <a href="/ninja/{{turtles['orange'] }}">More on Michelangelo</a>
+        <div class="maincontent">
+            <div class="Heros">
+                <h5>Leonardo</h5>
+                <img src="{{ url_for('static', filename='images/leonardo.jpg') }}" alt="Leonardo">
+                <a href="/ninja/{{ turtles['blue'] }}">More on Leonardo</a>
+            </div>
+            <div class="Heros">
+                <h5>Donatello</h5>
+                <img src="{{ url_for('static', filename='images/donatello.jpg') }}" alt="Donatello">
+                <a href="/ninja/{{turtles['purple'] }}">More on Donatello</a>
+            </div>
+            <div class="Heros">
+                <h5>Raphael</h5>
+                <img src="{{ url_for('static', filename='images/raphael.jpg') }}" alt="Raphael">
+                <a href="/ninja/{{turtles['red'] }}">More on Raphael</a>
+            </div>
+            <div class="Heros">
+                <h5>Michelangelo</h5>
+                <img src="{{ url_for('static', filename='images/michelangelo.jpg') }}" alt="Michaelangelo">
+                <a href="/ninja/{{turtles['orange'] }}">More on Michelangelo</a>
+            </div>
         </div>
     </body>
 </html>

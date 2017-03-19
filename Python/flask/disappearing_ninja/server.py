@@ -16,6 +16,9 @@ def four_turtles():
         'red': 'Raphael',
         'orange': 'Michelangelo'
     }
+
+    main_page = True
+    print "this is the main page", main_page
     print "the ninja_color dictionary is the following:", ninja_color
     print "The value for the key:blue is:", ninja_color['blue']
     session['ninja_details'].append(ninja_color)
@@ -25,6 +28,9 @@ def four_turtles():
 @app.route('/ninja/<ninja_id>')
 def one_turtle(ninja_id):
     print "this is the ninja_id:", ninja_id
+    main_page = False
+    print "this is the main page", main_page
+
 
     return render_template('/one_character.html', ninja_id = ninja_id)
 @app.route('/clear')

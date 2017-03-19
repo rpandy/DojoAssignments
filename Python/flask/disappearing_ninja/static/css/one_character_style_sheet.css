@@ -4,19 +4,17 @@ body{
 }
 
 img{
-    width: 150px;
-    height: 150px;
+    width: 300px;
+}
+
+h3{
+    text-align: center;
 }
 
 .Heros{
-    width: 200px;
+    width: 500px;
     display: inline-block;
     border: 1px solid black;
     padding: 20px;
     margin: 15px;
-}
-a{
-    width: 50px;
-    display: inline-block;
-    text-align: center;
 }
