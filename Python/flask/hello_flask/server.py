@@ -71,7 +71,7 @@ def showUser():
 @app.route('/user/<user_id>')
 def one_user(user_id): #passing in the variable (user_id). Looking for a route parameter
     user = session['name_list'][int(user_id)]
-    print user
+    print "this is the dictionary", user
     return render_template("/oneuser.html", user = user)
 
 @app.route("/clear")
