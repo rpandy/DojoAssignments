@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>One Character</title>
+    </head>
+    <body>
+        {% if ninja_id == 'Leonardo' %}
+            <img src="{{ url_for('static', filename='images/leonardo.jpg') }}" alt="Leonardo">
+        {% elif ninja_id == 'Donatello' %}
+            <img src="{{ url_for('static', filename='images/donatello.jpg') }}" alt="Donatello">
+        {% elif ninja_id == 'Raphael' %}
+            <img src="{{ url_for('static', filename='images/raphael.jpg') }}" alt="Raphael">
+        {% elif ninja_id == 'Michelangelo' %}
+            <img src="{{ url_for('static', filename='images/michelangelo.jpg') }}" alt="Michelangelo">
+        {% else %}
+            <img src="{{ url_for('static', filename='images/notapril.jpg') }}" alt="April">
+        {% endif %}
+    </body>
+</html>
