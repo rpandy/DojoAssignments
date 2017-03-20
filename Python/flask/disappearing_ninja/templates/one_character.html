@@ -6,9 +6,12 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/one_character_style_sheet.css')}}">
     </head>
     <body>
+        <!-- if statments determine which characters image/H3 to display -->
+        <!-- find a way to use a loop instead of repeating the code 5 times. -->
         {% if ninja_id == 'Leonardo' %}
         <div class="Heros">
             <h3>Leads</h3>
+            <!-- find a way to embed jpg name w/ jinja -->
             <img src="{{ url_for('static', filename='images/leonardo.jpg') }}" alt="Leonardo"><br>
             <a href="/ninja">Back</a>
         </div>
