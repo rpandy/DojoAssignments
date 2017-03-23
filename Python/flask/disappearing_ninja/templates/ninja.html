@@ -9,37 +9,32 @@
     </head>
     <body>
         <div id="header">
-            <h1>Teenage Mutant Ninja Turtles</h1>
+            <h1>Teenage Mutant Ninjas</h1>
         </div>
-        <!-- attempting to combine one_character and ninja templates -->
-        {% if main_page == 'True' %}
-            <div class="maincontent">
-                <div class="Heros">
-                    <h5>Leonardo</h5>
-                    <img src="{{ url_for('static', filename='images/leonardo.jpg') }}" alt="Leonardo">
-                    <a href="/ninja/{{ turtles['blue'] }}">More on Leonardo</a>
-                </div>
-                <div class="Heros">
-                    <h5>Donatello</h5>
-                    <img src="{{ url_for('static', filename='images/donatello.jpg') }}" alt="Donatello">
-                    <a href="/ninja/{{turtles['purple'] }}">More on Donatello</a>
-                </div>
-                <div class="Heros">
-                    <h5>Raphael</h5>
-                    <img src="{{ url_for('static', filename='images/raphael.jpg') }}" alt="Raphael">
-                    <a href="/ninja/{{turtles['red'] }}">More on Raphael</a>
-                </div>
-                <div class="Heros">
-                    <h5>Michelangelo</h5>
-                    <img src="{{ url_for('static', filename='images/michelangelo.jpg') }}" alt="Michaelangelo">
-                    <a href="/ninja/{{turtles['orange'] }}">More on Michelangelo</a>
-                </div>
+            <div id="ninjas">
+                <!-- inserting the value for the image -->
+                {% if ninjas %}
+                    {% for ninja in ninjas %}
+                        <img src="../static/{{ninjas[ninja]}}">
+                    {% endfor %}
+                {% endif %}
+
+                {% if turtle %}
+                    <img src="../static/{{turtle['img']}}"><br>
+                    <a href="/ninja">Back to Ninjas</a>
+                {% endif %}
+
+                {% if ninjas %}
+                <p>Leonardo</p>
+                <p>Donatello</p>
+                <p>Raphael</p>
+                <p>Michelangelo</p>
+                {% endif %}
+
+                {% if turtle %}
+                <p>{{turtle['name']}} ({{turtle['color']}})</p>
+                {% endif %}
             </div>
-            <a href="/">Back</a>
-        {% elif main_page == 'False'%}
-
-        <!-- code from one_character template -->
-
-        {% endif %}
+            <a href="/">Beginning</a>
     </body>
 </html>

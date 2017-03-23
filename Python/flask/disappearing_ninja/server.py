@@ -1,47 +1,46 @@
 from flask import Flask, render_template, request, redirect, session
+
 app=Flask(__name__)
+
 app.secret_key = "SECRETSSSS"
 
 @app.route('/')
 def index():
-    #create a list in session if list isn't created already
-    if "ninja_details" not in session:
-        session['ninja_details'] = []
     return render_template('index.html')
 
 @app.route('/ninja')
-def four_turtles():
-    # creat dictionary of characters
-    ninja_color = {
-        'blue': 'Leonardo',
-        'purple': 'Donatello',
-        'red': 'Raphael',
-        'orange': 'Michelangelo'
+def ninjas():
+    # create dictionary of characters
+    ninjas = {
+    'blue': 'images/leonardo.jpg', #use full img link in dictionary instead of just turtle name
+    'purple': 'images/donatello.jpg',
+    'red': 'images/raphael.jpg',
+    'orange': 'images/michelangelo.jpg'
     }
-    #attempting to combine templates.
-        #When main_page = TRUE then we show all four turtles
-        #When main_page = FALSE we execute the code on the one_character template
-    main_page = 'True'
-    print "this is the main page:", main_page
-    #print "the ninja_color dictionary is the following:", ninja_color
-    #print "The value for the key:blue is:", ninja_color['blue']
-    session['ninja_details'].append(ninja_color)
-    print "list items are indexed... at index 0", session['ninja_details']
-    #pass variables to ninja.html template
-    return render_template('/ninja.html', turtles = ninja_color, main_page=main_page)
+    return render_template('ninja.html', ninjas=ninjas) # pass ninjas dictionary to jinja
 
-#use the <ninja_id> variable to specify specific character
-@app.route('/ninja/<ninja_id>')
-def one_turtle(ninja_id): # <-- pass variable into function
-    #print "this is the ninja_id:", ninja_id
-    main_page = 'False'
-    print "this is the main page", main_page
-    #pass ninja_id to one_character template
-    return render_template('/one_character.html', ninja_id = ninja_id)
+#use the <color> variable to specify specific character
+@app.route('/ninja/<color>')
+def one_ninja(color): # <-- pass variable into function
 
-#clear session
-@app.route('/clear')
-def clear_session():
-    session.clear()
-    return redirect('/')
+# if statements to determine which character shows up given the color route
+    ninjas = {
+    "blue": ['images/leonardo.jpg', 'Leonardo'],
+    "purple":['images/donatello.jpg','Donatello'],
+    "red":['images/raphael.jpg','Raphael'],
+    "orange":['images/michelangelo.jpg','Michelangelo']
+    }
+
+    if color in ninjas:
+        turtle = {
+            'img': ninjas[color][0],
+            'color': color,
+            'name': ninjas[color][1]
+        }
+    else:
+        turtle = {
+            'img': 'images/notapril.jpg'
+        }
+    return render_template('ninja.html', turtle=turtle)
+
 app.run(debug=True)
