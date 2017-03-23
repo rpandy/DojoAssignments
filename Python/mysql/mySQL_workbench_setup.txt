@@ -1,0 +1,6 @@
+SELECT * FROM cities;
+
+SELECT * FROM states;
+
+
+Worked out examples during lecture. Refer to notes! 
