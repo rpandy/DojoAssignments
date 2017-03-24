@@ -4,8 +4,11 @@ from flask import Flask, render_template, request, redirect, session, flash
 # Global variable __name__ tells Flask whether or not we
 # are running the file directly or importing it as a module.
 import re
+
+from mysqlconnection import MySQLConnector
 app = Flask(__name__)
 app.secret_key = "I<3Secrets"
+mysql = MySQLConnector(app, "flasksqldb")
 
 #first part is checking for allowable characters.
 #when regex uses the period its seen as a specialized character. This is done with backslash "\"
