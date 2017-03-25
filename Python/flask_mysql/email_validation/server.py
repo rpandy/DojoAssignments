@@ -16,23 +16,31 @@ def index():
     return render_template('index.html', all_emails=emails)
 
 @app.route('/email', methods = ['POST'])
-def addEmail():
+def validateEmail():
     print request.form['email']
+    errors = 0
     if len(request.form['email']) < 1:
         flash("EMAIL CANNOT BE BLANK")
+        errors+=1
 
-    elif not EMAIL_REGEX.match(request.form['email']):
+    if not EMAIL_REGEX.match(request.form['email']):
         flash("EMAIL IS NOT VALID")
-    else:
-        flash("Thank you!")
+        errors+=1
+    if errors:
+        return redirect('/')
+
     add_email_query = "INSERT INTO emails (email, created_at, updated_at)VALUES(:email, now(), now())"
 
-    data = {
-        'email': request.form['email']
-    }
+    data = {'email': request.form['email']}
 
     newEmail = mysql.query_db(add_email_query,data)
     session['emailsdb'] = data
-    return redirect('/')
+    return redirect('/success')
+
+@app.route('/success')
+def showEmails():
+    flash("Thank you!!!!!")
+    emails = mysql.query_db("SELECT * FROM emails")
+    return render_template('success.html', all_emails = emails)
 
 app.run(debug=True)

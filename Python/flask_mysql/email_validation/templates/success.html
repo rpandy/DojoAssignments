@@ -3,8 +3,21 @@
     <head>
         <meta charset="utf-8">
         <title>Success</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/my_style_sheet.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css')}}">
     </head>
     <body>
+        <div id="flashed_message">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <!-- class below only works with materialze -->
+                        <p class="green white-text">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+        </div>
         <div id="email_display">
             {{ all_emails }}
             <h2>Email Addresses Entered:</h2>
