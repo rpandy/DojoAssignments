@@ -18,9 +18,13 @@
                 <p id="email_display">id:{{email['id']}} - {{ email['email'] }} - {{ email['created_at'] }}</p>
                 {% endfor %}
             </div>
-            <!-- <form action="index.html" method="post">
-
-            </form> -->
         </div>
+        <a href="/">Back</a>
+
+        <form action="/success/delete/<email_id>" method="POST">
+            <label for="email_id">DELETE EMAIL:<input type="text" name="email_id" placeholder="email_id"></label>
+            <input type="submit" value="Delete">
+
+        </form>
     </body>
 </html>

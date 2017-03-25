@@ -44,10 +44,10 @@ def showEmails():
 
     return render_template('success.html', all_emails = emails)
 
-@app.route('/success/delete/<email_id>')
+@app.route('/success/delete/<email_id>', methods=['POST'])
 def deleteEmail(email_id):
     delete_query = "DELETE FROM emails WHERE ID = :id"
-    data = {'id': email_id}
+    data = {'id': request.form['email_id']}
     mysql.query_db(delete_query,data)
     return redirect('/success')
 
