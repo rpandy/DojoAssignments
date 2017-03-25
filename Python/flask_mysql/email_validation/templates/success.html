@@ -15,9 +15,12 @@
             <h2>Email Addresses Entered:</h2>
             <div>
                 {% for email in all_emails %}
-                <p id="email_display">{{ email['email'] }} - {{ email['created_at'] }}</p>
+                <p id="email_display">id:{{email['id']}} - {{ email['email'] }} - {{ email['created_at'] }}</p>
                 {% endfor %}
             </div>
+            <!-- <form action="index.html" method="post">
+
+            </form> -->
         </div>
     </body>
 </html>
