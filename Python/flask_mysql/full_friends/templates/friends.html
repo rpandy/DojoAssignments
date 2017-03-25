@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Friends</title>
+    </head>
+    <body>
+        {{ friends }}
+        {% for friend in friends %}
+        <form action="/friends/{{ friend['id'] }}" method="post">
+            <label for="first_name">First Name:<input type="text" name="first_name"></label><br>
+            <label for="last_name">Last Name:<input type="text" name="last_name"></label><br>
+            <label for="occupation">Occupation:<input type="text" name="occupation"></label>
+            <input type="submit" value="Update">
+        </form>
+        {% endfor %}
+    </body>
+</html>
