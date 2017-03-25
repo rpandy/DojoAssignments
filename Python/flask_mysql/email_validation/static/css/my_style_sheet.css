@@ -1,5 +1,5 @@
 body{
-    padding: 200px;
+    padding: 100px 200px 200px 200px;
     background-color: #e8edf3;
 }
 
@@ -12,11 +12,7 @@ h2{
     text-align: center;
 }
 
-p{
-    width: 400px;
-    padding: 20px;
-    /*display: inline-block;*/
-}
+
 #flashed_messages{
     margin-left: 300px;
     text-align: center;
@@ -25,6 +21,7 @@ p{
 #container{
     padding: 20px;
     background-color: #e6cf8b;
+    border-radius: 20px;
 }
 
 #flashed_messages{
@@ -39,8 +36,9 @@ p{
     padding: 15px;
     margin-bottom: 20px;
     background-color: #3fb0ac;
+    border-radius: 20px;
 }
 
 #email_display{
-    margin-left: 350px;
+    margin-left: 325px;
 }
