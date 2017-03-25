@@ -20,16 +20,19 @@ def addEmail():
     print request.form['email']
     if len(request.form['email']) < 1:
         flash("EMAIL CANNOT BE BLANK")
+
     elif not EMAIL_REGEX.match(request.form['email']):
         flash("EMAIL IS NOT VALID")
     else:
         flash("Thank you!")
-    add_email_query = "INSERT INTO emails (email, created_at, updated_at)VALUES(':specific_email', now(), now())"
+    add_email_query = "INSERT INTO emails (email, created_at, updated_at)VALUES(:email, now(), now())"
 
-    data = {'specific_email': request.form['email']}
+    data = {
+        'email': request.form['email']
+    }
 
     newEmail = mysql.query_db(add_email_query,data)
-    # session['emailsdb'] = data
+    session['emailsdb'] = data
     return redirect('/')
 
 app.run(debug=True)

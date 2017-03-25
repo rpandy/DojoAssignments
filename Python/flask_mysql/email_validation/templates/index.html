@@ -9,7 +9,7 @@
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                    <p> {{ message }}</p>
+                    <p class="red white-text"> {{ message }}</p>
                 {% endfor %}
             {% endif %}
         {% endwith %}
@@ -24,6 +24,5 @@
                 <p>{{ email['email'] }} - {{ email['created_at'] }}</p>
             {% endfor %}
         </div>
-        <a href="/clear">Clear Session</a>
     </body>
 </html>
