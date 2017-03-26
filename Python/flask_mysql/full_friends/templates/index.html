@@ -22,10 +22,10 @@
                     <td>{{friend['occupation']}}</td>
                     <td>
                         <form action="/friends/{{friend['id']}}/edit">
-                            <input type="submit" value="edit">
+                            <input type="submit" value="Edit">
                         </form>
-                        <form action="#" method="POST">
-                            <input type="submit" value="delete">
+                        <form action="/friends/{{friend['id']}}/delete" method="POST">
+                            <input type="submit" value="Delete">
                         </form>
                     </td>
                 </tr>

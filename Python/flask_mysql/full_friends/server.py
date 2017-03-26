@@ -31,7 +31,7 @@ def create():
 def edit(friend_id):
     query = "SELECT * FROM friends"
     friends = mysql.query_db(query)
-    
+
     edit_query = "SELECT * FROM friends WHERE id = :id"
 
     data = {'id': friend_id}
@@ -52,6 +52,17 @@ def update(friend_id):
     }
 
     mysql.query_db(update_query,data)
+    return redirect('/')
+
+@app.route('/friends/<friend_id>/delete', methods=['POST'])
+def destroy(friend_id):
+
+    query = "SELECT * FROM friends"
+    friends = mysql.query_db(query)
+
+    delete_query = "DELETE FROM friends WHERE ID = :id"
+    data = {'id': friend_id}
+    mysql.query_db(delete_query,data)
     return redirect('/')
 
 app.run(debug=True, port=8000)
