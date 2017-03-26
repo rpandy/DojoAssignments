@@ -3,11 +3,13 @@
     <head>
         <meta charset="utf-8">
         <title>Full Friends</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/my_style_sheet.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css')}}">
     </head>
     <body>
         <div id="container">
             <h1>Full Friends</h1>
-            {{ friends }}
+            <!-- {{ friends }} -->
             <table>
                 <tr>
                     <th>First Name</th>

@@ -3,16 +3,20 @@
     <head>
         <meta charset="utf-8">
         <title>Friends</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/my_style_sheet.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css')}}">
     </head>
     <body>
-        {{ friends }}
-        {% for friend in friends %}
-        <form action="/friends/{{ friend['id'] }}" method="post">
-            <label for="first_name">First Name:<input type="text" name="first_name"></label><br>
-            <label for="last_name">Last Name:<input type="text" name="last_name"></label><br>
-            <label for="occupation">Occupation:<input type="text" name="occupation"></label>
-            <input type="submit" value="Update">
-        </form>
-        {% endfor %}
+        <div id="container">
+            <!-- {{ friends }} -->
+            {% for friend in friends %}
+            <form action="/friends/{{ friend['id'] }}" method="post">
+                <label for="first_name">First Name:<input type="text" name="first_name"></label><br>
+                <label for="last_name">Last Name:<input type="text" name="last_name"></label><br>
+                <label for="occupation">Occupation:<input type="text" name="occupation"></label>
+                <input type="submit" value="Update">
+            </form>
+            {% endfor %}
+        </div>
     </body>
 </html>
