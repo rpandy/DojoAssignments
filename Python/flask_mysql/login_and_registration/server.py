@@ -20,7 +20,7 @@ def index():
     # print users
     # print "email is ",session['users_login_and_registration']['email']
 
-    return render_template('index.html')
+    return render_template('index.html',login = users)
 
 @app.route('/registration')
 def showRegistration():
@@ -107,10 +107,16 @@ def login():
 
     email = request.form['email']
     password = request.form['password']
-
+    errors = 0
     if len(request.form['password']) < 1:
-        print "TEST IF STATEMENT"
+        # print "TEST IF STATEMENT"
+        flash("Valid password must be entered")
+        errors += 1
+    if len(request.form['email']) < 1:
+        # print "TEST IF STATEMENT"
         flash("Valid email must be entered")
+        errors +=1
+    if errors:
         return redirect('/login')
     else:
         login_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
