@@ -6,25 +6,56 @@
     </head>
     <body>
         <div id="container">
-            <h1>Login and Registration</h1>
             {{ all_users }}
-            <div id="flashed_messages">
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <p class="red white-text">{{ message }}</p>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
+            <a href="/registration">Register as a new user</a>
+            <a href="/login">Login</a>
+
+            {% if login %}
+            <h1>Login</h1>
+
+            <div id="login">
+                <div class="flashed_messages">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="red white-text">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                </div>
+                <form action="/login" method="post">
+                    <label for="email">Email: <input type="text" name="email"></label><br>
+                    <label for="password">Password: <input type="password" name="password"></label><br>
+                    <input type="submit" value="Submit">
+                </form>
             </div>
-            <form action="/users" method="post">
-                <label for="first_name">First Name: <input type="text" name="first_name"></label><br>
-                <label for="last_name">Last Name: <input type="text" name="last_name"></label><br>
-                <label for="email">Email: <input type="text" name="email"></label><br>
-                <label for="password">Password: <input type="password" name="password"></label><br>
-                <label for="password_confirmation">Confirm Password: <input type="password" name="password_confirmation"></label>
-                <input type="submit" value="Submit">
-            </form>
+            {% endif %}
+
+            {% if registration %}
+            <h1>Registration</h1>
+
+            <div id="registration">
+                <div class="flashed_messages">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="red white-text">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <form action="/create_user" method="post">
+                    <label for="first_name">First Name: <input type="text" name="first_name"></label><br>
+                    <label for="last_name">Last Name: <input type="text" name="last_name"></label><br>
+                    <label for="email">Email: <input type="text" name="email"></label><br>
+                    <label for="password">Password: <input type="password" name="password"></label><br>
+                    <label for="password_confirmation">Confirm Password: <input type="password" name="password_confirmation"></label>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <!-- make two links for each route... registration and login -->
+            {% endif %}
         </div>
     </body>
 </html>

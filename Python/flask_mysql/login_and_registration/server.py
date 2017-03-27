@@ -18,12 +18,30 @@ LETTERS_ONLY = re.compile(r'[A-Za-z]')
 def index():
     users = mysql.query_db("SELECT * FROM users")
     # print users
-    print "email is ",session['users_login_and_registration']['email']
+    # print "email is ",session['users_login_and_registration']['email']
 
-    return render_template('index.html', all_users = users)
+    return render_template('index.html')
 
-@app.route('/users', methods=['POST'])
+@app.route('/registration')
+def showRegistration():
+    users = mysql.query_db("SELECT * FROM users")
+    return render_template('index.html', registration = users)
+
+
+@app.route('/login')
+def showLogin():
+    users = mysql.query_db("SELECT * FROM users")
+    return render_template('index.html', login = users)
+
+@app.route('/create_user', methods=['POST'])
 def validateUserRegistration():
+    #check to see if we're dealing with a new user
+    # if "session['users_login_and_registration']['email']"
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    email = request.form['email']
+    password = request.form['password']
+
     errors = 0
     #validate first name (2+ char/ Letters only/ cannot be empty)
     if len(request.form['first_name']) < 2:
@@ -63,22 +81,46 @@ def validateUserRegistration():
     if request.form['password'] != request.form['password_confirmation']:
         flash("Passwords do not match")
     if errors:
-        return redirect('/success')
+        return redirect('/registration')
+
+    pw_hash = bcrypt.generate_password_hash(password)
 
     #INSERT W/ SQL Query
-    add_user_query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES (:first_name, :last_name, :email, now(), now())"
+    add_user_query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES (:first_name, :last_name, :email, :pw_hash, now(), now())"
 
     user_data = {
-        'first_name': request.form['first_name'],
-        'last_name': request.form['last_name'],
-        'email': request.form['email'],
+        'first_name': first_name,
+        'last_name': last_name,
+        'email': email,
+        'pw_hash': pw_hash
     }
+
+    print bcrypt.check_password_hash(pw_hash,password)
 
     session['users_login_and_registration'] = user_data
 
     mysql.query_db(add_user_query,user_data)
     return redirect('/success')
 
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.form['email']
+    password = request.form['password']
+
+    login_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
+
+    login_data = {'email':email }
+
+    user = mysql.query_db(login_query,login_data)
+    print "this is the login query:", mysql.query_db(login_query,login_data)
+    # print "this is the pw_hash:", user[0]['pw_hash']
+    all_users = mysql.query_db('SELECT * FROM users')
+    if bcrypt.check_password_hash(user[0]['password'],password):
+        print "TEST TEST"
+        return redirect('/success')
+    else:
+        flash("Incorrect login info")
+        return redirect('/login')
 
 @app.route('/success')
 def registered_user():
