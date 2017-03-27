@@ -104,23 +104,30 @@ def validateUserRegistration():
 
 @app.route('/login', methods=['POST'])
 def login():
+
     email = request.form['email']
     password = request.form['password']
 
-    login_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
-
-    login_data = {'email':email }
-
-    user = mysql.query_db(login_query,login_data)
-    print "this is the login query:", mysql.query_db(login_query,login_data)
-    # print "this is the pw_hash:", user[0]['pw_hash']
-    all_users = mysql.query_db('SELECT * FROM users')
-    if bcrypt.check_password_hash(user[0]['password'],password):
-        print "TEST TEST"
-        return redirect('/success')
-    else:
-        flash("Incorrect login info")
+    if len(request.form['password']) < 1:
+        print "TEST IF STATEMENT"
+        flash("Valid email must be entered")
         return redirect('/login')
+    else:
+        login_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
+
+        login_data = {'email':email }
+
+        user = mysql.query_db(login_query,login_data)
+        print "this is the login query:", mysql.query_db(login_query,login_data)
+
+        all_users = mysql.query_db('SELECT * FROM users')
+
+        if bcrypt.check_password_hash(user[0]['password'],password):
+            # print "TEST TEST"
+            return redirect('/success')
+        else:
+            flash("Incorrect login info: Email and password combination does not match")
+            return redirect('/login')
 
 @app.route('/success')
 def registered_user():

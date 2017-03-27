@@ -3,10 +3,14 @@
     <head>
         <meta charset="utf-8">
         <title>Success</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/my_style_sheet.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css') }}">
     </head>
     <body>
-        <h1>Welcome to WestWorld {{session['users_login_and_registration']['first_name']}}!!!</h1>
-        {{ all_users }}
+        <div id="container">
+            <h1>Welcome to WestWorld {{session['users_login_and_registration']['first_name']}}!!!</h1>
+            {{ all_users }}
+        </div>
 
     </body>
 </html>
