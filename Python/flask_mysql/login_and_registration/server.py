@@ -22,21 +22,19 @@ def index():
 
     return render_template('index.html',login = users)
 
-@app.route('/registration')
+@app.route('/registration') #show registration form on index.html
 def showRegistration():
     users = mysql.query_db("SELECT * FROM users")
     return render_template('index.html', registration = users)
 
 
-@app.route('/login')
+@app.route('/login') #show login form on index.html
 def showLogin():
     users = mysql.query_db("SELECT * FROM users")
     return render_template('index.html', login = users)
 
 @app.route('/create_user', methods=['POST'])
-def validateUserRegistration():
-    #check to see if we're dealing with a new user
-    # if "session['users_login_and_registration']['email']"
+def createNewUser():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
@@ -86,6 +84,7 @@ def validateUserRegistration():
     pw_hash = bcrypt.generate_password_hash(password)
 
     #INSERT W/ SQL Query
+    #pass pw_hash variable into table as encrypted password
     add_user_query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES (:first_name, :last_name, :email, :pw_hash, now(), now())"
 
     user_data = {
