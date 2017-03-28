@@ -22,19 +22,17 @@ NAME_REGEX = re.compile(r'^[a-zA-Z]{2,}$')
 # whenever we send a request to localhost:5000/ we will run the following function
 @app.route('/')
 def hello_flask():
-    if "counter" not in session:
-        session['counter'] = 0
-        session['name_list'] = []
+    if "count" not in session:
+        session['count'] = 1
+    else:
+        session['count'] += 1
     print "Im in my route for index!"
-    age = 33
-    job = "who knows"
-    #name you expect variable to be on template and what the variable will be equal to
 
     #set query equal to SQL string
     query = "SELECT * FROM users;"
     users = mysql.query_db(query)
     print users
-    return render_template('index.html',age = age, job=job)
+    return render_template('index.html',greeting = "Hello welcome to Flask", other = 4)
 
 @app.route('/users', methods = ["POST"])
 def new_user():

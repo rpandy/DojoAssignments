@@ -95,7 +95,7 @@ def newUser():
         'pw_hash': pw_hash #encrypted variable
     }
 
-    print "is this working???", bcrypt.check_password_hash(pw_hash,password)
+    print "is bcrypt working???", bcrypt.check_password_hash(pw_hash,password)
 
     #save insert_user_data to session
     session['the_wall'] = insert_user_data
