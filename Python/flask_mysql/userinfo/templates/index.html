@@ -5,12 +5,28 @@
         <title>HELLO FLASK with a little extra</title>
     </head>
     <body>
-        <p>{{user_info}}</p>
-        <h1>HI {{session['userinfo']['first_name']}} Thanks for adding yourself to our list of Mutants! Professor X will be contacting you shortly.</h1>
+        <!-- <p>{{userinfo}}</p> -->
+        {% if 'userinfo' in session %}
+            <h1>HI {{session['userinfo']['first_name']}} Thanks for adding yourself to our list of Mutants! Professor X will be contacting you shortly.</h1>
+        {% endif %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <form action="/user" method="post">
-        <input type="text" name="fname" placeholder="First Name">
-        <input type="text" name="lname" placeholder="Last Name">
-        <button type="submit" name="newUser">Add User</button>
-    </form>
+            <input type="text" name="fname" placeholder="First Name">
+            <input type="text" name="lname" placeholder="Last Name">
+            <input type="text" name="email" placeholder="jsmith@dojo.com">
+            <input type="password" name="password" placeholder="Password ********">
+            <button type="submit" name="register">Register</button>
+        </form>
+        <form action="/user" method="post">
+            <input type="text" name="email" placeholder="jsmith@dojo.com">
+            <input type="password" name="password" placeholder="Password ********">
+            <button type="submit" name="login">Login</button>
+        </form>
     </body>
 </html>
