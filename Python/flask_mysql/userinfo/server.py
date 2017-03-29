@@ -1,9 +1,10 @@
 from flask import Flask, redirect, render_template, request, session,flash
 from mysqlconnection import MySQLConnector
-from bcrpyt import Bcrypt
+from flask_bcrypt import Bcrypt
 import re
 app = Flask(__name__)
 app.secret_key = "SEEEECRETTTS"
+bcrpyt = Bcrypt(app)
 mysql = MySQLConnector(app, 'userinfo')
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
@@ -57,7 +58,8 @@ def logreg():
             # 'underbar' flashes in session
         if '_flashes' in session:
             return redirect('/')
-
+        #pass password through salt and bcrypt for encrpytion
+        passHash = bcrpyt.generate_password_hash(request.form['password'])
         #if email is valid we register them
         new_user_query = "INSERT INTO users(first_name, last_name, email, pass, created_at, updated_at)VALUES(:first_name, :last_name, :email, :pass, now(), now())"
         #cleans up the data by making it a literal string.
@@ -65,7 +67,7 @@ def logreg():
             'first_name': request.form['fname'],
             'last_name': request.form['lname'],
             'email': request.form['email'],
-            'pass': request.form['password']
+            'pass': passHash
         }
 
 
@@ -80,21 +82,28 @@ def logreg():
 #2 methods on the same route. in order to differentiate we can use  names in the forms. SEE ABOVE (BEFORE REGISTRATION)
     elif 'login' in request.form:
         #SQL query is doing the comparison to check whether email and password match
-        user_query = "SELECT id, first_name, last_name, email, pass FROM users WHERE email = :email AND pass = :pass"
+        user_query = "SELECT id, first_name, last_name, email, pass FROM users WHERE email = :email"
 
         user_data = {
         'email': request.form['email'],
-        'pass': request.form['password'],
         }
 
         #this will always be a list of something or an empty list
         checkUser = mysql.query_db(user_query,user_data)
-        print "CheckUser is:",checkUser
-        #weuse a conditional
+        # print "CheckUser is:",checkUser
+        #we use a conditional
         #if its correct we login the user. if incorrect name OR password is incorrect.
         #for security reasons we dont tell them what they have right or wrong
         if not checkUser:
+            print "no user"
             flash('Email or Password is invalid')
+            #taking password that you just entered into form, hashing it again
+            #and comparing it to the previously hashed password saved in the database
+            #at checkUser[0]['pass']. If not equal then redirect.
+        elif not bcrpyt.check_password_hash(checkUser[0]['pass'],request.form['password']):
+            print "bad pass"
+            flash('Email or Password is invalid')
+        if "_flashes" in session:
             return redirect('/')
             # since this is a list we need to use [0] to access that list
         session['userinfo'] = {
