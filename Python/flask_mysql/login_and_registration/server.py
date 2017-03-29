@@ -39,44 +39,36 @@ def createNewUser():
     last_name = request.form['last_name']
     email = request.form['email']
     password = request.form['password']
+    pw_conf = request.form['password_confirmation']
 
     errors = 0
     #validate first name (2+ char/ Letters only/ cannot be empty)
-    if len(request.form['first_name']) < 2:
+    if len(first_name) < 2:
         flash("First Name must be at least 2 characters")
         errors+=1
-    if len(request.form['first_name']) < 1:
-        flash("First Name cannot be empty")
-        errors+=1
-    if not LETTERS_ONLY.match(request.form['first_name']):
+    if not LETTERS_ONLY.match(first_name):
         flash("First Name must contain letters only")
         errors+=1
     #validate last name (2+ char/ Letters only/ cannot be empty)
-    if len(request.form['last_name']) < 2:
+    if len(last_name) < 2:
         flash("Last Name must be at least 2 characters")
         errors+=1
-    if len(request.form['last_name']) < 1:
-        flash("Last Name cannot be empty")
-        errors+=1
-    if not LETTERS_ONLY.match(request.form['first_name']):
+    if not LETTERS_ONLY.match(last_name):
         flash("Last Name must contain letters only")
         errors+=1
     #validate email (valid email format/ cannot be empty)
-    if len(request.form['email']) < 1:
+    if len(email) < 1:
         flash("Email cannot be empty")
         errors+=1
-    if not EMAIL_REGEX.match(request.form['email']):
+    if not EMAIL_REGEX.match(email):
         flash("Not a valid email address")
         errors+=1
     #validate password (at least 8 characters/ cannot be empty)
-    if len(request.form['password']) < 8:
+    if len(password) < 8:
         flash("Password must be at least 8 characters long")
         errors+=1
-    if len(request.form['email']) < 1:
-        flash("Password cannot be empty")
-        errors+=1
     #validate password confirmation(match password)
-    if request.form['password'] != request.form['password_confirmation']:
+    if password != pw_conf:
         flash("Passwords do not match")
     if errors:
         return redirect('/registration')
