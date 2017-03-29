@@ -1,0 +1,32 @@
+Python Checklist:
+import necessary dependencies from flask (Flask, request, redirect, render_template, session, flash
+
+import MySQLConnector to connect to SQL
+
+import Bcrypt for encryption 
+
+bcrypt = Bcrpty(app)
+app = Flask(__name__)
+
+include MySQLConnector file in project directory
+
+import re for validation
+
+app.secret_key = “YOU PICK THE NAME”
+
+copy EMAIL REGEX to avoid errors
+
+Don’t forget decorator (@) before every route
+
+routes in quotes - @app.route(‘/’)
+
+if mysqlconnection.pyc file does not appear in your project folder then the sql connection didnt work
+
+
+makes sure that you do not ask for information that you did not send from the server side. This will cause an error because we don’t know what to look for.
+
+make sure there is no semi-colon at the end of your SQL statement in Python
+
+make sure there are commas in between key value pairs in Data dictionary before plugging them into mysql.query_db.
+
+“Bad Request The browser (or proxy) sent a request that this server could not understand.” means that we’re sending over information from the form that the server cannot find.
