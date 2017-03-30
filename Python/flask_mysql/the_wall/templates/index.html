@@ -10,7 +10,8 @@
                 <h1>Welcome to the Wall</h1>
             </div>
             <div id="main_content">
-                <div id="login">
+                <!-- <div id="login">
+                    <h1>Login</h1>
                     {% with messages = get_flashed_messages() %}
                         {% if messages %}
                             {% for message in messages %}
@@ -18,16 +19,14 @@
                             {% endfor %}
                         {% endif %}
                     {% endwith %}
-                    <form action="/user" method="post">
+                    <form action="/login" method="post">
                         <label for="email">Email:<input type="text" name="email"></label>
                         <label for="password">Password:<input type="password" name="password"></label>
                         <input type="submit" name="login" value="submit">
                     </form>
                     <a href="/registration">Register</a>
-                </div>
+                </div> -->
 
-
-                {% if registration %}
 
                 <div id="registration">
                     <h1>Registration:</h1>
@@ -39,7 +38,7 @@
                         {% endif %}
                     {% endwith %}
 
-                    <form action="/user" method="post">
+                    <form action="/create_user" method="post">
                         <label for="first_name">First Name:<input type="first_name" name="first_name"></label>
                         <label for="last_name">Last Name:<input type="last_name" name="last_name"></label>
                         <label for="email">Email:<input type="email" name="email"></label>
@@ -47,7 +46,6 @@
                         <label for="password_confirmation">Confirm Password:<input type="password" name="password_confirmation"></label>
                         <input type="submit" name="registration" value="Submit">
                     </form>
-                {% endif %}
                 </div>
             </div>
         </div>
