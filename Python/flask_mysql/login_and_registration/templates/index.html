@@ -35,7 +35,8 @@
             </div>
             {% endif %}
 
-            {% if registration %}
+            <!-- added login == [] to account for the possibility of an empty database -->
+            {% if registration or login == [] %}
             <h1>Registration</h1>
 
             <div id="registration">

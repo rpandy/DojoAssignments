@@ -8,9 +8,10 @@
     </head>
     <body>
         <div id="container">
-            <h1>Welcome to WestWorld {{session['users_login_and_registration']['first_name']}}!!!</h1>
-            <!-- {{ all_users }} -->
+            <h1>Welcome to WestWorld {{session['users_login_and_registration']['first_name']}}!!!</h1><br>
+            <a href="/logout">Logout</a>
         </div>
+        {{all_users}}
 
     </body>
 </html>

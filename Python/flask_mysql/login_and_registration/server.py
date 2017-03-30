@@ -22,24 +22,25 @@ def index():
 
     return render_template('index.html',login = users)
 
-@app.route('/registration') #show registration form on index.html
+@app.route('/registration')
 def showRegistration():
     users = mysql.query_db("SELECT * FROM users")
     return render_template('index.html', registration = users)
 
 
-@app.route('/login') #show login form on index.html
+@app.route('/login')
 def showLogin():
     users = mysql.query_db("SELECT * FROM users")
     return render_template('index.html', login = users)
 
 @app.route('/create_user', methods=['POST'])
-def createNewUser():
+def validateUserRegistration():
+    #check to see if we're dealing with a new user
+    # if "session['users_login_and_registration']['email']"
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
     password = request.form['password']
-    pw_conf = request.form['password_confirmation']
 
     errors = 0
     #validate first name (2+ char/ Letters only/ cannot be empty)
@@ -57,9 +58,6 @@ def createNewUser():
         flash("Last Name must contain letters only")
         errors+=1
     #validate email (valid email format/ cannot be empty)
-    if len(email) < 1:
-        flash("Email cannot be empty")
-        errors+=1
     if not EMAIL_REGEX.match(email):
         flash("Not a valid email address")
         errors+=1
@@ -68,7 +66,7 @@ def createNewUser():
         flash("Password must be at least 8 characters long")
         errors+=1
     #validate password confirmation(match password)
-    if password != pw_conf:
+    if request.form['password'] != request.form['password_confirmation']:
         flash("Passwords do not match")
     if errors:
         return redirect('/registration')
@@ -76,7 +74,6 @@ def createNewUser():
     pw_hash = bcrypt.generate_password_hash(password)
 
     #INSERT W/ SQL Query
-    #pass pw_hash variable into table as encrypted password
     add_user_query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES (:first_name, :last_name, :email, :pw_hash, now(), now())"
 
     user_data = {
@@ -130,4 +127,10 @@ def login():
 def registered_user():
     all_users = mysql.query_db('SELECT * FROM users')
     return render_template('success.html', all_users = all_users)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
+
 app.run(debug=True, port=8000)
