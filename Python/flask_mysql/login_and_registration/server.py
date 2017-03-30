@@ -19,14 +19,12 @@ def index():
     users = mysql.query_db("SELECT first_name, last_name FROM users")
     # print users
     # print "email is ",session['users_login_and_registration']['email']
-
     return render_template('index.html',login = users)
 
 @app.route('/registration')
 def showRegistration():
-    users = mysql.query_db("SELECT first_name last_name FROM users")
+    users = mysql.query_db("SELECT first_name, last_name FROM users")
     return render_template('index.html', registration = users)
-
 
 @app.route('/login')
 def showLogin():
@@ -44,7 +42,6 @@ def validateUserRegistration():
 
     if userExists:
         flash("Email address is invalid. Please use another address")
-
 
     first_name = request.form['first_name']
     last_name = request.form['last_name']

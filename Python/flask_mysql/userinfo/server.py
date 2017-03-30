@@ -79,7 +79,7 @@ def logreg():
         flash('You are now registered')
         return redirect('/')
 
-#2 methods on the same route. in order to differentiate we can use  names in the forms. SEE ABOVE (BEFORE REGISTRATION)
+    #2 methods on the same route. in order to differentiate we can use  names in the forms. SEE ABOVE (BEFORE REGISTRATION)
     elif 'login' in request.form:
         #SQL query is doing the comparison to check whether email and password match
         user_query = "SELECT id, first_name, last_name, email, pass FROM users WHERE email = :email"
@@ -96,7 +96,7 @@ def logreg():
         #for security reasons we dont tell them what they have right or wrong
         if not checkUser:
             print "no user"
-            flash('Email or Password is invalid')
+            flash('Invalid Email and/or Password')
             #taking password that you just entered into form, hashing it again
             #and comparing it to the previously hashed password saved in the database
             #at checkUser[0]['pass']. If not equal then redirect.
