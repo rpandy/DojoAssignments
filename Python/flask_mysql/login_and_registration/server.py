@@ -16,7 +16,7 @@ LETTERS_ONLY = re.compile(r'[A-Za-z]')
 
 @app.route('/')
 def index():
-    users = mysql.query_db("SELECT * FROM users")
+    users = mysql.query_db("SELECT first_name, last_name FROM users")
     # print users
     # print "email is ",session['users_login_and_registration']['email']
 
@@ -24,19 +24,28 @@ def index():
 
 @app.route('/registration')
 def showRegistration():
-    users = mysql.query_db("SELECT * FROM users")
+    users = mysql.query_db("SELECT first_name last_name FROM users")
     return render_template('index.html', registration = users)
 
 
 @app.route('/login')
 def showLogin():
-    users = mysql.query_db("SELECT * FROM users")
+    users = mysql.query_db("SELECT first_name FROM users")
     return render_template('index.html', login = users)
 
 @app.route('/create_user', methods=['POST'])
 def validateUserRegistration():
-    #check to see if we're dealing with a new user
-    # if "session['users_login_and_registration']['email']"
+    #check to see if email already exists in the system
+    user_query = "SELECT id FROM users WHERE email = :email"
+    user_data = {
+        'email': request.form['email']
+    }
+    userExists = mysql.query_db(user_query,user_data)
+
+    if userExists:
+        flash("Email address is invalid. Please use another address")
+
+
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']
@@ -82,12 +91,10 @@ def validateUserRegistration():
         'email': email,
         'pw_hash': pw_hash
     }
-
+    newUserId = mysql.query_db(add_user_query,user_data)
     print bcrypt.check_password_hash(pw_hash,password)
-
+    # we dont want to save the entire user_data object into session because it contains the password and doesnt have the user id
     session['users_login_and_registration'] = user_data
-
-    mysql.query_db(add_user_query,user_data)
     return redirect('/success')
 
 @app.route('/login', methods=['POST'])
@@ -106,26 +113,22 @@ def login():
         errors +=1
     if errors:
         return redirect('/login')
+
+    login_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
+    login_data = {'email':email }
+    user = mysql.query_db(login_query,login_data)
+    print "this is the login query:", mysql.query_db(login_query,login_data)
+    all_users = mysql.query_db('SELECT first_name, last_name, email FROM users')
+    if bcrypt.check_password_hash(user[0]['password'],password):
+        # print "TEST TEST"
+        return redirect('/success')
     else:
-        login_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
-
-        login_data = {'email':email }
-
-        user = mysql.query_db(login_query,login_data)
-        print "this is the login query:", mysql.query_db(login_query,login_data)
-
-        all_users = mysql.query_db('SELECT * FROM users')
-
-        if bcrypt.check_password_hash(user[0]['password'],password):
-            # print "TEST TEST"
-            return redirect('/success')
-        else:
-            flash("Incorrect login info: Email and password combination does not match")
-            return redirect('/login')
+        flash("Incorrect login info: Email and password combination does not match")
+        return redirect('/login')
 
 @app.route('/success')
 def registered_user():
-    all_users = mysql.query_db('SELECT * FROM users')
+    all_users = mysql.query_db('SELECT first_name, last_name, email FROM users')
     return render_template('success.html', all_users = all_users)
 
 @app.route('/logout')
