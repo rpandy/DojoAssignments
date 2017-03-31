@@ -94,7 +94,10 @@ def login():
     email = request.form['email']
     password = request.form['password']
 
+    #CHECK TO SEE IF EMAIL IS ALREADY IN DATABASE - CHECK REGISTRATION
+
     #login validation (1/2)
+    email_errors = 0
     login_query = "SELECT id, first_name, last_name, email, password FROM users WHERE email = :email"
     login_data = {'email': email }
     loginUser = mysql.query_db(login_query,login_data)
@@ -102,10 +105,12 @@ def login():
     # print "this is loginUser:", loginUser
     if not loginUser:
         flash("Invalid Email/Password combination")
+        email_errors += 1
     elif not bcrypt.check_password_hash(loginUser[0]['password'],password):
         flash("Invalid Email/Password combination")
-        return redirect('/the_wall')
-    if "_flashes" in session:
+        email_errors += 1
+        # return redirect('/the_wall')
+    if email_errors:
         return redirect('/')
     #login validation (2/2).
     errors = 0
@@ -139,32 +144,33 @@ def wall_activity():
     all_messages = mysql.query_db("SELECT message FROM messages")
 
     return render_template('the_wall.html', users = users, all_messages=all_messages)
-    
-@app.route('/the_wall/<user_id>', methods=['POST'])
+
+@app.route('/the_wall/<user_id>/post')
+def selectUser(user_id):
+    select_query = "SELECT id, first_name FROM users WHERE id = :id"
+    select_data = {
+        'id': user_id
+    }
+    selected_user = mysql.query_db(select_query, select_data)
+    print "Selected User query:", selected_user
+
+    return render_template('/the_wall.html', selected_user = selected_user)
+
+@app.route('/the_wall/<user_id>/post', methods=['POST'])
 def postMessage(user_id):
 
-#WORK ON THE INSERT INTO QUERY
-#pull id of user posting message
-#post message in another route
-#pull id of user posting message
-#post message in another route
-#pull id of user posting message
-#post message in another route
-#pull id of user posting message
-#post message in another route
-    message_query = "INSERT INTO messages (user_id, message, created_at, updated_at)VALUES(:user_id ,:message ,now() ,now()) WHERE id = :user_id"
+    message_query = "INSERT INTO messages(user_id, message, created_at, updated_at)VALUES(:user_id, :message, now(), now())"
 
     message_data = {
         'message': request.form['message'],
         'user_id': user_id
     }
-    print request.form['message']
-    print user_id
     messages = mysql.query_db(message_query, message_data)
 
-    print "this is the messages:",messages
-    return redirect('/the_wall')
+    print user_id
+    print "this is the posted messages:",request.form['message']
 
+    return redirect('/the_wall')
 @app.route('/logout')
 def logout():
     session.clear()

@@ -30,3 +30,7 @@ make sure there is no semi-colon at the end of your SQL statement in Python
 make sure there are commas in between key value pairs in Data dictionary before plugging them into mysql.query_db.
 
 “Bad Request The browser (or proxy) sent a request that this server could not understand.” means that we’re sending over information from the form that the server cannot find.
+
+watch for spelling of bcrypt!!
+
+
