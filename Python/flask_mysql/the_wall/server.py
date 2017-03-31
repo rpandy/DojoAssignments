@@ -2,12 +2,11 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from mysqlconnection import MySQLConnector
 from flask_bcrypt import Bcrypt
-
 import re #needed for validation
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.secret_key = "SEEEECRETTTS"
-mysql = MySQLConnector(app, 'the_wall')
+mysql = MySQLConnector(app, 'wall_db')
 
 #validation
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
@@ -15,15 +14,10 @@ LETTERS_ONLY = re.compile(r'[A-Za-z]')
 
 @app.route('/')
 def index():
-    users = mysql.query_db("SELECT first_name FROM users")
+    all_users = mysql.query_db("SELECT first_name, id FROM users")
     # print "this is the index route"
     # print "users dictionary:", users
-    return render_template('index.html', login = users)
-
-# @app.route('/the_wall')
-# def showWall():
-#     users = mysql.query_db("SELECT first_name FROM users")
-#     render_template('the_wall.html', users=users)
+    return render_template('index.html', all_users = all_users)
 
 @app.route('/create_user', methods=['POST'])
 def newUser():
@@ -44,8 +38,6 @@ def newUser():
     if userExists:
         flash("Email address is invalid. Please use another address.")
         return redirect('/')
-    #set request_form values to easy variables
-
     #registration validation
     errors = 0
     #validate first name (letters only/ cannot be empty)
@@ -80,77 +72,126 @@ def newUser():
         return redirect('/')
     #encrypt password via Bcrpyt
     pw_hash = bcrypt.generate_password_hash(password)
-
+    print"this is the pw hash:", pw_hash
     #insert new user into user table via SQL
     #pass pw_hash variable into table as encrypted password
-    insert_user_query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES(:first_name, :last_name, :email, :pw_hash, now(), now())"
+    insert_user_query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES(:first_name, :last_name, :email, :password, now(), now())"
 
     insert_user_data = {
         'first_name': first_name,
         'last_name': last_name,
         'email': email,
-        'pw_hash': pw_hash #encrypted variable
+        'password': pw_hash #encrypted variable
     }
 
-    print "is bcrypt working???", bcrypt.check_password_hash(pw_hash,password)
-
-    #save insert_user_data to session
-    session['the_wall'] = insert_user_data
-
     #function to run SQL query
-    mysql.query_db(insert_user_query,insert_user_data)
+    newUserId = mysql.query_db(insert_user_query,insert_user_data)
     return redirect('/the_wall')
 
 @app.route('/login', methods=['POST'])
 def login():
-
+    # login variables
     email = request.form['email']
     password = request.form['password']
 
-    #login validation
+    #login validation (1/2)
+    login_query = "SELECT id, first_name, last_name, email, password FROM users WHERE email = :email"
+    login_data = {'email': email }
+    loginUser = mysql.query_db(login_query,login_data)
+    print "encrypted password:", loginUser[0]['password']
+    # print "this is loginUser:", loginUser
+    if not loginUser:
+        flash("Invalid Email/Password combination")
+    elif not bcrypt.check_password_hash(loginUser[0]['password'],password):
+        flash("Invalid Email/Password combination")
+        return redirect('/the_wall')
+    if "_flashes" in session:
+        return redirect('/')
+    #login validation (2/2).
     errors = 0
-
     #validate password (cannot be empty)
-    if len(password) < 1:
+    if len(password) < 2:
         flash("Password field cannot be empty")
         errors += 1
-
     #validate email address (cannot be empty/ must be valid email format)
-    if len(request.form['email']) < 1:
-        flash("Email field cannot be empty")
-        errors += 1
     if not EMAIL_REGEX.match(request.form['email']):
         flash("Not a valid email")
         errors += 1
     #if there are any errors redirect user to /login page
     if errors:
-        return redirect('/login')
-    #if validation is successful complete login via else statement
-    else:
-        select_user_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
+        return redirect('/')
 
-        select_user_data = {'email': email }
-
-        user = mysql.query_db(select_user_query, select_user_data)
-        print "login query:", mysql.query_db(select_user_query, select_user_data)
-
-        all_users = mysql.query_db('SELECT * FROM users')
-        print "password:", user[0]['password']
-        user_pw = user[0]['password']
-        print user_pw
-        if bcrypt.check_password_hash(user_pw,password):
-            print "test test"
-            return redirect('/the_wall')
-        else:
-            flash("Incorrect login info: Email and password combination does not match")
-            return redirect('/login')
+    #save only what we need in the session.
+    #do not save the user ID
+    session['the_wall'] = {
+        'first_name': loginUser[0]['first_name'],
+        'last_name': loginUser[0]['last_name'],
+        'email': loginUser[0]['email'],
+        'id': loginUser[0]['id'],
+    }
+    print "currently saved in session:", session['the_wall']
+    return redirect('/the_wall')
 
 @app.route('/the_wall')
 def wall_activity():
-    all_users = mysql.query_db('SELECT first_name FROM users')
-    return render_template('the_wall.html', all_users = all_users)
+
+    users = mysql.query_db("SELECT first_name, id FROM users")
+    all_messages = mysql.query_db("SELECT message FROM messages")
+
+    return render_template('the_wall.html', users = users, all_messages=all_messages)
+    
+@app.route('/the_wall/<user_id>', methods=['POST'])
+def postMessage(user_id):
+
+#WORK ON THE INSERT INTO QUERY
+#pull id of user posting message
+#post message in another route
+#pull id of user posting message
+#post message in another route
+#pull id of user posting message
+#post message in another route
+#pull id of user posting message
+#post message in another route
+    message_query = "INSERT INTO messages (user_id, message, created_at, updated_at)VALUES(:user_id ,:message ,now() ,now()) WHERE id = :user_id"
+
+    message_data = {
+        'message': request.form['message'],
+        'user_id': user_id
+    }
+    print request.form['message']
+    print user_id
+    messages = mysql.query_db(message_query, message_data)
+
+    print "this is the messages:",messages
+    return redirect('/the_wall')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 app.run(debug=True) #leave at default port 5000
+
+
+        #if validation is successful complete login via else statement
+    # else:
+    #     select_user_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
+    #
+    #     select_user_data = {'email': email }
+    #
+    #     user = mysql.query_db(select_user_query, select_user_data)
+    #     print "login query:", mysql.query_db(select_user_query, select_user_data)
+    #
+    #     all_users = mysql.query_db('SELECT * FROM users')
+    #     print "password:", user[0]['password']
+    #     user_pw = user[0]['password']
+    #     print user_pw
+    #     if bcrypt.check_password_hash(user_pw,password):
+    #         print "test test"
+    #         return redirect('/the_wall')
+    #     else:
+    #         flash("Incorrect login info: Email and password combination does not match")
+    #         return redirect('/login')
 
 
 
