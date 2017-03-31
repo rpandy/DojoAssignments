@@ -3,21 +3,45 @@
     <head>
         <meta charset="utf-8">
         <title>The Wall</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/my_style_sheet.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css')}}">
     </head>
     <body>
         <div id="container">
             <div id="header">
-                <h1>Welcome to the Wall, {{ users[0]['first_name'] }}!</h1>
+                <h1>Welcome to the Wall, {{ session['the_wall']['first_name'] }}!</h1>
             </div>
             <div id="main_content">
                 <h3>Post a message</h3>
-                <form action="/the_wall/{{ users[0]['id'] }}/post" method="post">
+                <form action="/the_wall/{{ session['the_wall']['id'] }}/post" method="post">
                     <textarea name="message" rows="8" cols="80"></textarea><br>
-                <input type="submit" value="submit">
+                <input type="submit" value="Post Message">
                 </form>
+                <!-- each message needs a unique form for its comments -->
+                <!-- that form should be right after the message and all the other comments -->
+                {% for message in get_messages %}
+                <h3>{{session['the_wall']['first_name']}}:</h3>
+                    <p> {{ message['message'] }} </p>
+                    <p> messageID: {{ message['id'] }} </p>
+                    <form action="/the_wall/{{ message['id'] }}/comment" method="post">
+                        <textarea name="comment" rows="8" cols="40"></textarea> <br>
+                        <input type="submit" value="Comment">
+                    </form>
+                {% endfor %}
+
             </div>
-            <p>users dictionary: {{users}}</p>            <p>messages dictionary: {{all_messages}}</p>
-            {{selected_user}}<br>
+            <p>users dictionary: {{users}}</p>
+            <p>all_messages dictionary: {{all_messages}}</p>
+            <p>current users ID: {{session['the_wall']['id']}}</p><br>
+            <p>Get messages query:{{get_messages}}</p>
+            <p>comments:{{session['comments']}}</p>
+            <a href="/the_wall/{{session['the_wall']['id']}}/comment">get_message_query</a>
+
+            <form action="/the_wall/message_id/comment" method="post">
+                <textarea name="comment" rows="8" cols="40"></textarea> <br>
+                <input type="submit" value="Submit">
+            </form>
+
             <a href="/logout">Logout</a>
         </div>
     </body>

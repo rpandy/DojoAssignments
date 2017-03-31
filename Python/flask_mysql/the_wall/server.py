@@ -141,21 +141,12 @@ def login():
 def wall_activity():
 
     users = mysql.query_db("SELECT first_name, id FROM users")
-    all_messages = mysql.query_db("SELECT message FROM messages")
+    all_messages = mysql.query_db("SELECT message, id FROM messages")
+
 
     return render_template('the_wall.html', users = users, all_messages=all_messages)
 
-@app.route('/the_wall/<user_id>/post')
-def selectUser(user_id):
-    select_query = "SELECT id, first_name FROM users WHERE id = :id"
-    select_data = {
-        'id': user_id
-    }
-    selected_user = mysql.query_db(select_query, select_data)
-    print "Selected User query:", selected_user
-
-    return render_template('/the_wall.html', selected_user = selected_user)
-
+#route to post new messages to The Wall.
 @app.route('/the_wall/<user_id>/post', methods=['POST'])
 def postMessage(user_id):
 
@@ -171,6 +162,51 @@ def postMessage(user_id):
     print "this is the posted messages:",request.form['message']
 
     return redirect('/the_wall')
+
+#ROUTE TO GET MESSAGE ID
+#???
+@app.route('/the_wall/<user_id>/comment')
+def get_message_id(user_id):
+
+    #PASSING VARIABLES TO THE NEW TEMPLATE AFTER COMMENTS ARE ADDED> FIND A BETTER WAY TO DO THIS
+
+    users = mysql.query_db("SELECT first_name, id FROM users")
+    all_messages = mysql.query_db("SELECT message, id FROM messages")
+
+    get_message_query = "SELECT id, message FROM messages WHERE user_id = :user_id"
+    get_message_data = {
+    'user_id': session['the_wall']['id']
+    }
+    get_messages = mysql.query_db(get_message_query,get_message_data)
+
+    print "this is the get_messages query:", get_messages
+    return render_template('/the_wall.html', users = users, all_messages=all_messages, get_messages = get_messages)
+
+
+
+@app.route('/the_wall/<message_id>/comment', methods=['POST'])
+def postComment(message_id):
+    comment_query = "INSERT INTO comments(user_id, message_id, comment, created_at, updated_at)VALUES(:user_id, :message_id, :comment, now(), now())"
+
+    comment_data = {
+        'user_id': session['the_wall']['id'],
+        'message_id': message_id,
+        'comment': request.form['comment']
+        }
+
+    get_comments = mysql.query_db(comment_query, comment_data)
+    print "this is the posted comment:", request.form['comment']
+
+    # comment_user_query = "SELECT first_name FROM users WHERE user_id = :user_id"
+    #
+    # comment_user_data = {
+    #     'user_id': session['the_wall']['id']
+    # }
+
+
+    return redirect('/the_wall')
+
+
 @app.route('/logout')
 def logout():
     session.clear()
@@ -178,6 +214,20 @@ def logout():
 
 app.run(debug=True) #leave at default port 5000
 
+
+#route to select user not necessary because that info was
+#saved in session
+#might not be necessary
+# @app.route('/the_wall/<user_id>/post')
+# def selectUser(user_id):
+#     select_query = "SELECT first_name FROM users WHERE id = :id"
+#     select_data = {
+#         'id': user_id
+#     }
+#     selected_user = mysql.query_db(select_query, select_data)
+#     print "Selected User query:", selected_user
+#
+#     return render_template('/the_wall.html', selected_user = selected_user)
 
         #if validation is successful complete login via else statement
     # else:
