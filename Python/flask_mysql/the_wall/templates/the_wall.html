@@ -20,29 +20,37 @@
 
                 {% for message in all_messages %}
                 <h5>{{session['the_wall']['first_name']}} {{session['the_wall']['last_name']}}:</h5>
-                    <p> {{ message['message'] }} </p>
-                    <p> messageID: {{ message['id'] }} </p>
+                    <p> {{ message['message'] }} - {{message['created_at']}} </p>
+                    <!-- <p> messageID: {{ message['id'] }} </p> -->
+                    <a id="comments" href="/the_wall/{{ message['id'] }}/comment">Show Comments for Message {{ message['id'] }}</a>
                     <form action="/the_wall/{{ message['id'] }}/comment" method="post">
                         <textarea name="comment" rows="8" cols="40"></textarea> <br>
                         <input type="submit" value="Comment">
                     </form>
                 {% endfor %}
+                {% if comments %}
+                <h2>Comments</h2>
+                <p> {{ show_comments[0]['comment'] }} </p>
+                {% endif %}
+
+
 
                 <!-- each message needs a unique form for its comments -->
                 <!-- that form should be right after the message and all the other comments -->
             </div>
             <p>users dictionary: {{users}}</p>
             <p>all_messages dictionary: {{all_messages}}</p>
+            <p>all_comments dictionary: {{all_comments}}</p>
             <p>current users ID: {{session['the_wall']['id']}}</p><br>
-            <p>Get messages query:{{get_messages}}</p>
-            <p>comments:{{session['comment']}}</p>
+            <!-- <p>Get messages query: {{ get_messages}}</p> -->
+            <p>Get comments query: {{ show_comments }}</p>
             <!-- takes the user to messages AND comments -->
-            <a href="/the_wall/{{session['the_wall']['id']}}/comment">{{ session['the_wall']['first_name'] }}'s Messages and Comments</a>
+            <!-- <a href="/the_wall/{{session['the_wall']['id']}}/comment">{{ session['the_wall']['first_name'] }}'s Messages and Comments</a>
 
             <form action="/the_wall/message_id/comment" method="post">
                 <textarea name="comment" rows="8" cols="40"></textarea> <br>
                 <input type="submit" value="Submit">
-            </form>
+            </form> -->
 
             <a href="/logout">Logout</a>
         </div>

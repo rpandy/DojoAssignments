@@ -136,14 +136,15 @@ def login():
     }
     print "currently saved in session:", session['the_wall']
     return redirect('/the_wall')
-
+#initial get route to the wall. Passing all three tables to html for future use
 @app.route('/the_wall')
 def wall_activity():
 
     users = mysql.query_db("SELECT first_name, id FROM users")
-    all_messages = mysql.query_db("SELECT message, id FROM messages")
+    all_messages = mysql.query_db("SELECT message, id, created_at FROM messages")
+    all_comments = mysql.query_db("SELECT user_id, message_id, comment FROM comments")
 
-    return render_template('the_wall.html', users = users, all_messages=all_messages)
+    return render_template('the_wall.html', users=users, all_messages=all_messages, all_comments=all_comments)
 
 #route to post new messages to The Wall.
 @app.route('/the_wall/<user_id>/post', methods=['POST'])
@@ -153,7 +154,7 @@ def postMessage(user_id):
 
     message_data = {
         'message': request.form['message'],
-        'user_id': user_id
+        'user_id': session['the_wall']['id']
     }
     messages = mysql.query_db(message_query, message_data)
 
@@ -162,27 +163,19 @@ def postMessage(user_id):
 
     return redirect('/the_wall')
 
-#ROUTE TO GET MESSAGE ID
-#???
-@app.route('/the_wall/<user_id>/comment')
-def get_message_id(user_id):
+@app.route('/the_wall/<message_id>/comment')
+def showComments(message_id):
+    show_comments_query = "SELECT comment FROM comments WHERE message_id =:message_id"
 
-    #PASSING VARIABLES TO THE NEW TEMPLATE AFTER COMMENTS ARE ADDED> FIND A BETTER WAY TO DO THIS
-
-    users = mysql.query_db("SELECT first_name, id FROM users")
-    all_messages = mysql.query_db("SELECT message, id FROM messages")
-
-    get_message_query = "SELECT id, message FROM messages WHERE user_id = :user_id"
-    get_message_data = {
-    'user_id': session['the_wall']['id']
+    show_comments_data = {
+    'message_id': message_id
     }
-    get_messages = mysql.query_db(get_message_query,get_message_data)
+    show_comments = mysql.query_db(show_comments_query,show_comments_data)
 
-    print "this is the get_messages query:", get_messages
-    return render_template('/the_wall.html', users = users, all_messages=all_messages, get_messages = get_messages)
+    print "this is the show_comments query:", show_comments
+    return render_template('the_wall.html', show_comments=show_comments)
 
-
-
+# post comment to the wall
 @app.route('/the_wall/<message_id>/comment', methods=['POST'])
 def postComment(message_id):
     comment_query = "INSERT INTO comments(user_id, message_id, comment, created_at, updated_at)VALUES(:user_id, :message_id, :comment, now(), now())"
@@ -192,27 +185,10 @@ def postComment(message_id):
         'message_id': message_id,
         'comment': request.form['comment']
         }
-
     get_comments = mysql.query_db(comment_query, comment_data)
     print "this is the posted comment:", request.form['comment']
 
-    session['comment'] = request.form['comment']
-
-    print "SAVING INTO SESSION:", session['comment']
-
-    # comment_user_query = "SELECT first_name FROM users WHERE user_id = :user_id"
-    #
-    # comment_user_data = {
-    #     'user_id': session['the_wall']['id']
-    # }
     return redirect('/the_wall')
-
-@app.route('/the_wall/<message_id>/')
-def showComments(message_id):
-    query = "SELECT "
-
-    return render_template()
-
 
 @app.route('/logout')
 def logout():
