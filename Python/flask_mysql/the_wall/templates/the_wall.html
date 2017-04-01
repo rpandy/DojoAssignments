@@ -9,18 +9,17 @@
     <body>
         <div id="container">
             <div id="header">
-                <h1>Welcome to the Wall, {{ session['the_wall']['first_name'] }}!</h1>
+                <h3>Welcome to the Wall, {{ session['the_wall']['first_name'] }}!</h3>
             </div>
             <div id="main_content">
-                <h3>Post a message</h3>
+                <h4>Post a message</h4>
                 <form action="/the_wall/{{ session['the_wall']['id'] }}/post" method="post">
                     <textarea name="message" rows="8" cols="80"></textarea><br>
                 <input type="submit" value="Post Message">
                 </form>
-                <!-- each message needs a unique form for its comments -->
-                <!-- that form should be right after the message and all the other comments -->
-                {% for message in get_messages %}
-                <h3>{{session['the_wall']['first_name']}}:</h3>
+
+                {% for message in all_messages %}
+                <h5>{{session['the_wall']['first_name']}} {{session['the_wall']['last_name']}}:</h5>
                     <p> {{ message['message'] }} </p>
                     <p> messageID: {{ message['id'] }} </p>
                     <form action="/the_wall/{{ message['id'] }}/comment" method="post">
@@ -29,13 +28,16 @@
                     </form>
                 {% endfor %}
 
+                <!-- each message needs a unique form for its comments -->
+                <!-- that form should be right after the message and all the other comments -->
             </div>
             <p>users dictionary: {{users}}</p>
             <p>all_messages dictionary: {{all_messages}}</p>
             <p>current users ID: {{session['the_wall']['id']}}</p><br>
             <p>Get messages query:{{get_messages}}</p>
-            <p>comments:{{session['comments']}}</p>
-            <a href="/the_wall/{{session['the_wall']['id']}}/comment">get_message_query</a>
+            <p>comments:{{session['comment']}}</p>
+            <!-- takes the user to messages AND comments -->
+            <a href="/the_wall/{{session['the_wall']['id']}}/comment">{{ session['the_wall']['first_name'] }}'s Messages and Comments</a>
 
             <form action="/the_wall/message_id/comment" method="post">
                 <textarea name="comment" rows="8" cols="40"></textarea> <br>

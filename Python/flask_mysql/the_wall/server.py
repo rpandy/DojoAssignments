@@ -143,7 +143,6 @@ def wall_activity():
     users = mysql.query_db("SELECT first_name, id FROM users")
     all_messages = mysql.query_db("SELECT message, id FROM messages")
 
-
     return render_template('the_wall.html', users = users, all_messages=all_messages)
 
 #route to post new messages to The Wall.
@@ -197,14 +196,22 @@ def postComment(message_id):
     get_comments = mysql.query_db(comment_query, comment_data)
     print "this is the posted comment:", request.form['comment']
 
+    session['comment'] = request.form['comment']
+
+    print "SAVING INTO SESSION:", session['comment']
+
     # comment_user_query = "SELECT first_name FROM users WHERE user_id = :user_id"
     #
     # comment_user_data = {
     #     'user_id': session['the_wall']['id']
     # }
-
-
     return redirect('/the_wall')
+
+@app.route('/the_wall/<message_id>/')
+def showComments(message_id):
+    query = "SELECT "
+
+    return render_template()
 
 
 @app.route('/logout')
@@ -213,144 +220,3 @@ def logout():
     return redirect('/')
 
 app.run(debug=True) #leave at default port 5000
-
-
-#route to select user not necessary because that info was
-#saved in session
-#might not be necessary
-# @app.route('/the_wall/<user_id>/post')
-# def selectUser(user_id):
-#     select_query = "SELECT first_name FROM users WHERE id = :id"
-#     select_data = {
-#         'id': user_id
-#     }
-#     selected_user = mysql.query_db(select_query, select_data)
-#     print "Selected User query:", selected_user
-#
-#     return render_template('/the_wall.html', selected_user = selected_user)
-
-        #if validation is successful complete login via else statement
-    # else:
-    #     select_user_query = "SELECT * FROM users WHERE email = :email LIMIT 1"
-    #
-    #     select_user_data = {'email': email }
-    #
-    #     user = mysql.query_db(select_user_query, select_user_data)
-    #     print "login query:", mysql.query_db(select_user_query, select_user_data)
-    #
-    #     all_users = mysql.query_db('SELECT * FROM users')
-    #     print "password:", user[0]['password']
-    #     user_pw = user[0]['password']
-    #     print user_pw
-    #     if bcrypt.check_password_hash(user_pw,password):
-    #         print "test test"
-    #         return redirect('/the_wall')
-    #     else:
-    #         flash("Incorrect login info: Email and password combination does not match")
-    #         return redirect('/login')
-
-
-
-
-
-
-
-
-
-# @app.route('/registration')
-# def showRegistration():
-#     users = mysql.query_db("SELECT first_name FROM users")
-#     return render_template('index.html', registration = users)
-#
-# @app.route('/login')
-# def showLogin():
-#     users = mysql.query_db("SELECT first_name FROM users")
-#     # print "this is the index route"
-#     # print "users dictionary:", users
-#     return render_template('index.html', login = users)
-#
-# @app.route('/user', methods=['POST'])
-# def log_reg():
-#     #check the form names to see if we're registering or logging in.
-#     #REGISTRATION
-#     #variables for request_form
-#     first_name = request.form['first_name']
-#     last_name = request.form['last_name']
-#     email = request.form['email']
-#     password = request.form['password']
-#
-#     #differentiate between which form to show. Show Registration form
-#     if "register" in request.form:
-#         user_query = "SELECT id FROM users WHERE email = :email"
-#         user_data = {
-#             'email': email
-#         }
-#         #check to see if the user already exists
-#         userExists = mysql.query_db(user_query, user_data)
-#         print "this is the if userExists query", userExists
-#
-#         #if there is a value in user exists then email is already in system
-#         if userExists:
-#             flash("Email address is invalid. Please use another address")
-#         else:
-#             if not EMAIL_REGEX.match(email):
-#                 flash("Email must be a valid email")
-#             if len(first_name) < 2:
-#                 flash("First Name must be longer than two characters")
-#             if len(last_name) < 2:
-#                 flash("Last Name must be longer than two characters")
-#             if len(password) < 8:
-#                 flash("Password must be longer than 8 characters")
-#         if '_flashes' in session:
-#             return redirect('/')
-#
-#         # pass password though bcrypt
-#         password_hash = bcrypt.generate_password_hash(password)
-#
-#         # if email is valid we register them
-#         new_user_query = "INSERT INTO users(first_name, last_name, email, password, created_at, updated_at) VALUES(:first_name, :last_name, :email, :password, now(), now())"
-#
-#         new_user_data = {
-#             'first_name':first_name,
-#             'last_name':last_name,
-#             'email':email,
-#             'password': password_hash #<--insert encrypted password
-#         }
-#         newUserId = mysql.query_db(new_user_query,new_user_data)
-#         flash('You are now registered')
-#         return redirect('/')
-#     #LOGIN
-#     elif 'login' in request.form:
-#         user_query = "SELECT id, first_name, last_name, email, password FROM users WHERE email = :email"
-#
-#         user_data = {
-#             'email': email,
-#         }
-#         # Check if CheckUser is a empty list or not.
-#         checkUser = mysql.query_db(user_query,user_data)
-#         print "checkUser:",checkUser
-#         print "this is the user query:", user_query
-#         #if checkUser
-#         if not checkUser:
-#             flash('Invalid Email and/or Password')
-#         elif not bcrpyt.check_password_hash(checkUser[0]['pass'],password):
-#             flash('Invalid Email and/or Password')
-#         if '_flashes' in session:
-#             return redirect('/')
-#         session['the_wall'] = {
-#             'first_name': checkUser[0]['first_name'],
-#             'last_name': checkUser[0]['last_name'],
-#             'email': checkUser[0]['email'],
-#             'id': checkUser[0]['id']
-#         }
-#         return redirect('/the_wall')
-#
-#
-# @app.route('/the_wall')
-# def the_wall():
-#     return render_template('the_wall.html')
-#
-# @app.route('/logout')
-# def logout():
-#     session.clear()
-#     return redirect('/')
