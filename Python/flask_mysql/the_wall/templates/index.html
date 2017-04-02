@@ -12,6 +12,7 @@
                 <h1>Welcome to the Wall</h1>
             </div>
             <div id="main_content">
+                {% if login %}
                 <div id="login">
                     <h1>Login</h1>
                     {% with messages = get_flashed_messages() %}
@@ -28,8 +29,9 @@
                     </form>
                     <a href="/registration">Register</a>
                 </div>
-
-
+                {% endif %}
+                
+                {% if registration %}
                 <div id="registration">
                     <h1>Registration:</h1>
                     {% with messages = get_flashed_messages() %}
@@ -49,6 +51,7 @@
                         <input type="submit" name="registration" value="Submit">
                     </form>
                 </div>
+                {% endif %}
             </div>
         </div>
     </body>

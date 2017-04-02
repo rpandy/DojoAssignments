@@ -17,7 +17,14 @@ def index():
     all_users = mysql.query_db("SELECT first_name, id FROM users")
     # print "this is the index route"
     # print "users dictionary:", users
-    return render_template('index.html', all_users = all_users)
+    return render_template('index.html', login = all_users)
+
+@app.route('/registration')
+def showRegistration():
+    all_users = mysql.query_db("SELECT first_name, id FROM users")
+    # print "this is the index route"
+    # print "users dictionary:", users
+    return render_template('index.html', registration = all_users)
 
 @app.route('/create_user', methods=['POST'])
 def newUser():
@@ -137,6 +144,12 @@ def login():
     print "currently saved in session:", session['the_wall']
     return redirect('/the_wall')
 #initial get route to the wall. Passing all three tables to html for future use
+
+@app.route('/the_wall/login')
+def showLogin():
+    users = mysql.query_db("SELECT first_name, id FROM users")
+    return render_template('the_wall.html', login = users)
+
 @app.route('/the_wall')
 def wall_activity():
 
@@ -171,6 +184,14 @@ def showComments(message_id):
     'message_id': message_id
     }
     show_comments = mysql.query_db(show_comments_query,show_comments_data)
+
+    # show_message_query = "SELECT message FROM messages WHERE id =:message_id AND user_id = :user_id"
+    #
+    # show_message_data = {
+    # 'message_id': message_id,
+    # 'user_id': session['the_wall']['id']
+    # }
+    # show_messages = mysql.query_db(show_message_query,show_message_data)
 
     print "this is the show_comments query:", show_comments
     return render_template('the_wall.html', show_comments=show_comments)
