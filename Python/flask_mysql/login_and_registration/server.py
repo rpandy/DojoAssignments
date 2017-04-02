@@ -26,10 +26,10 @@ def showRegistration():
     users = mysql.query_db("SELECT first_name, last_name FROM users")
     return render_template('index.html', registration = users)
 
-@app.route('/login')
-def showLogin():
-    users = mysql.query_db("SELECT first_name FROM users")
-    return render_template('index.html', login = users)
+# @app.route('/login')
+# def showLogin():
+#     users = mysql.query_db("SELECT first_name FROM users")
+#     return render_template('index.html', login = users)
 
 @app.route('/create_user', methods=['POST'])
 def validateUserRegistration():
