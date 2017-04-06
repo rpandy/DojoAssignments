@@ -9,17 +9,19 @@
     <body>
         <div id="container">
             <div id="header">
-                <h3>Welcome to the Wall, {{ session['the_wall']['first_name'] }}!</h3>
+                <h5 id="title">TheWall</h5>
+                <h5>Welcome, {{ session['the_wall']['first_name'] }}!</h5>
+                <a id="logout"href="/logout">Logout</a>
             </div>
             <div id="main_content">
-                <h4>Post a message</h4>
+                <h5>Post a message</h5>
                 <form action="/the_wall/{{ session['the_wall']['id'] }}/post" method="post">
                     <textarea name="message" rows="8" cols="80"></textarea><br>
                 <input type="submit" value="Post Message">
                 </form>
 
                 {% for message in all_messages %}
-                <h5>{{session['the_wall']['first_name']}} {{session['the_wall']['last_name']}}:</h5>
+                <h6>{{session['the_wall']['first_name']}} {{session['the_wall']['last_name']}}:</h6>
                     <p> {{ message['message'] }} - {{message['created_at']}} </p>
                     <!-- <p> messageID: {{ message['id'] }} </p> -->
                     <a id="comments" href="/the_wall/{{ message['id'] }}/comment">Show Comments for Message {{ message['id'] }}</a>
@@ -29,7 +31,7 @@
                     </form>
                 {% endfor %}
                 {% if comments %}
-                <h2>Comments</h2>
+                <h5>Comments</h5>
                 <p> {{ show_comments[0]['comment'] }} </p>
                 {% endif %}
 
@@ -51,8 +53,6 @@
                 <textarea name="comment" rows="8" cols="40"></textarea> <br>
                 <input type="submit" value="Submit">
             </form> -->
-
-            <a href="/logout">Logout</a>
         </div>
     </body>
 </html>

@@ -14,7 +14,7 @@
             <div id="main_content">
                 {% if login %}
                 <div id="login">
-                    <h1>Login</h1>
+                    <h3>Login</h3>
                     {% with messages = get_flashed_messages() %}
                         {% if messages %}
                             {% for message in messages %}
@@ -30,10 +30,10 @@
                     <a href="/registration">Register</a>
                 </div>
                 {% endif %}
-                
+
                 {% if registration %}
                 <div id="registration">
-                    <h1>Registration:</h1>
+                    <h3>Registration:</h3>
                     {% with messages = get_flashed_messages() %}
                         {% if messages %}
                             {% for message in messages %}
