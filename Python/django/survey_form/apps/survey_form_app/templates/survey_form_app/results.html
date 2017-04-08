@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>RESULTS</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'survey_form_app/css/myStyleSheet.css' %}">
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <h3>Thanks for submitting this form! You have submitted this form {{request.session.counter}} time(s) now</h3>
+            </div>
+            <div id="info">
+                <h4>Submitted Information</h4>
+                <p>{{request.session.name}}</p>
+                <p>{{request.session.location}}</p>
+                <p>{{request.session.fav_language}}</p>
+                <p>{{request.session.comment}}</p>
+            </div>
+            <a href="/home">Home</a><br>
+            <a href="/clear">Reset Session</a>
+        </div>
+    </body>
+</html>

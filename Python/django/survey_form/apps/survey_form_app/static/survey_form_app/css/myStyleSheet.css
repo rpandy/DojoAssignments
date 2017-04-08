@@ -1,0 +1,36 @@
+body{
+    padding: 100px 200px 200px 200px;
+    background-color: #7d4627;
+}
+
+h4{
+    text-decoration: underline;
+}
+
+a{
+    margin-left: 800px;
+}
+#header{
+    text-align: center;
+    background-color: #a8b6bf;
+    padding:30px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
+
+#container{
+    background-color: #c9d8c5;
+    padding:50px;
+    border-radius: 100px;
+}
+
+#form{
+    margin-left: 200px;
+}
+
+#info{
+    text-align: center;
+    background-color: #edd9c0;
+    border-radius: 100px;
+    padding:10px;
+}

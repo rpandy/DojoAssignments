@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Index</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'survey_form_app/css/myStyleSheet.css' %}">
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <h1>Dojo Survey</h1>
+            </div>
+            <form id=form action="/surveys/process" method="post">
+                {% csrf_token %}
+                Name: <input type="text" name="name"><br>
+                Dojo Location: <select name="location">
+                    <option value="Silicon Valley">Silicon Valley</option>
+                    <option value="Seattle">Seattle</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="Dallas">Dallas</option>
+                    <option value="Washington D.C.">Washington D.C.</option>
+                    <option value="Berkeley">Berkeley</option>
+                    <option value="Orange County">Orange County</option>
+                    <option value="Chicago">Chicago</option>
+                </select><br>
+                Favorite Language:<select name="fav_language">
+                    <option value="Python">Python</option>
+                    <option value="LAMP">LAMP</option>
+                    <option value="iOS Swift">iOS Swift</option>
+                    <option value="Ruby on Rails">Ruby on Rails</option>
+                    <option value="C#/ .NET CORE">C#/ .NET CORE</option>
+                </select><br>
+                <textarea name="comment" rows="8" cols="80"></textarea><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>
