@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>SUCCESS</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'validations_app/css/myStyleSheet.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    </head>
+    <body>
+        <div id="header">
+            <h2>The email address you entered ({{ request.session.email }}) is a VALID email address! Thank you!</h2>
+        </div>
+        <div id="maincontent">
+            <h4>Email addresses entered</h4>
+            {% for user in users %}
+            <p>{{user.email}} - {{user.created_at}}</p>
+            {% endfor %}
+        </div>
+    </body>
+</html>

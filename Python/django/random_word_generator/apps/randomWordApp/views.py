@@ -6,6 +6,8 @@ import string
 import random
 # Create your views here.
 def index(request):
+    if 'count' not in request.session:
+        request.session['count'] = 0
     return render(request, 'randomWordApp/index.html')
 
 def generate(request):
@@ -22,7 +24,7 @@ def generate(request):
         return redirect('/')
     else:
         return redirect('/')
-        
+
 def clear(request):
     print(request.method)
     request.session['count'] = 0

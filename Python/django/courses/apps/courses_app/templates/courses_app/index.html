@@ -4,26 +4,29 @@
         <meta charset="utf-8">
         <title>INDEX</title>
         {% load staticfiles %}
-        <!-- <link rel="stylesheet" href="{% static 'courses_app/css/myStyleSheet.css' %}"> -->
-        <!-- ADD MATERIALIZE! -->
+        <link rel="stylesheet" href="{% static 'courses_app/css/myStyleSheet.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     </head>
     <body>
-
-
-        <form action="/courses" method="post">
-            {% csrf_token %}
-            <label for="">Name:</label><br><input type="text" name="name"><br>
-            <label for="">Description:</label><br><textarea name="description" rows="8" cols="80"></textarea><br>
-            <input type="submit" value="Add">
-        </form>
-
-        <h1>courses!</h1>
-        {% for course in courses %}
-        <h3>Course ID: {{course.id}} | Course Name: {{course.course_name}}:</h3>
-        <p>Description: {{course.course_description}}</p>
-        <p>Date Added: {{course.created_at}}</p>
-        <a href="/courses/verify/{{course.id}}">Remove</a>
-        {% endfor %}
-
+        <div id="container">
+            <div id="header">
+                <h1>Add New Courses</h1>
+                <form action="/courses" method="post">
+                    {% csrf_token %}
+                    <label for="">Name:</label><br><input type="text" name="name"><br>
+                    <label for="">Description:</label><br><textarea name="description" rows="8" cols="80"></textarea><br>
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+            <div id="maincontent">
+                <h1>Courses:</h1>
+                {% for course in courses %}
+                <h3>Course ID: {{course.id}} | Course Name: {{course.course_name}}:</h3>
+                <p>Description: {{course.course_description}}</p>
+                <p>Date Added: {{course.created_at}}</p>
+                <a href="/courses/verify/{{course.id}}">Remove</a>
+                {% endfor %}
+            </div>
+        </div>
     </body>
 </html>

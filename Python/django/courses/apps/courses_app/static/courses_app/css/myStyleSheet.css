@@ -1,60 +1,39 @@
 body{
     padding: 100px 200px 200px 200px;
-    background-color: #935347
-;
-}
-/*h1{
-    width: 500px;
-    display: inline-block;
-    text-align: center
-}*/
-h4{
-    text-decoration: underline;
+    background-color: #935347;
 }
 
-a{
-    margin-left: 800px;
-}
-
-.building{
-    width: 200px;
-    height: 300px;
-    display: inline-block;
-    margin: 15px;
-    padding: 25px;
-    background-color: #64706c;
-    vertical-align: top;
-    border-radius: 25px;
-    text-align: center;
-}
-
-.building p{
-    text-align: center;
-    font-size: 12px;
-}
-
-#gold{
-    width: 900px;
-    display: inline-block;
+h1, h3{
     text-align: center
 }
 
-#header{
-    text-align: center;
-    background-color: #c7ad88;
-    padding:30px;
-    border-radius: 100px;
-    margin-bottom: 20px;
-}
 
 #container{
-    background-color: #ede9ce;
+    background-color: #64706c;
     padding:50px;
     border-radius: 100px;
 }
 
+#header{
+    background-color: #c7ad88;
+    padding:40px;
+    border-radius: 100px;
+}
 
+#maincontent{
+    background-color:#ede9ce;
+    margin-top: 20px;
+    padding:35px;
+    border-radius: 100px;
+}
 
+#maincontent{
+    text-align: center
+}
+
+#success_message{
+    text-align: center;
+}
 
 /*
 #ede9ce
