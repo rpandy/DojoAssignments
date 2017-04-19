@@ -68,6 +68,7 @@ class UserManager(models.Manager):
             return (True, new_object)
     def validate_and_login(self,data):
         #validate email (valid email format/ cannot be empty)
+        # Review the use of filter here vs GET
         User_Exists = User.objects.filter(email=data['email'])
         print User_Exists, "<--- replicated"
         errors = []
@@ -88,6 +89,7 @@ class UserManager(models.Manager):
         if errors:
             return (False, errors)
         else:
+            #used get because we're only looking for one particular email address. Can we use same variable from before. TEST
             login_user = User.objects.get(email=data['email'])
             pw = data['password']
 
