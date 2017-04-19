@@ -72,8 +72,8 @@ class UserManager(models.Manager):
         print User_Exists, "<--- replicated"
         errors = []
         if len(data['email']) < 1:
-            print "Email and password combination does not exist"
-            errors.append("Email and password combination does not exist")
+            print "Email cannot be blank"
+            errors.append("Email cannot be blank")
         if not EMAIL_REGEX.match(data['email']):
             print "Email is not valid"
             errors.append("Email is not valid")
@@ -89,7 +89,6 @@ class UserManager(models.Manager):
             return (False, errors)
         else:
             login_user = User.objects.get(email=data['email'])
-            # login_user = User_Exists
             pw = data['password']
 
             # hashed_pw = bcrypt.hashpw(pw.encode(), bcrypt.gensalt())
