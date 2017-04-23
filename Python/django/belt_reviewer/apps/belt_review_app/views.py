@@ -5,4 +5,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
+    print "INDEX METHOD"
+    print "************"
+    
     return render(request, 'belt_review_app/index.html')

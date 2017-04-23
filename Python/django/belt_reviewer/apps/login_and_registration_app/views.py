@@ -38,7 +38,7 @@ def register(request):
     request.session['first_name'] = user_info[1].first_name
 
 
-    return render(request, 'login_and_registration_app/success.html')
+    return render(request, 'belt_review_app/index.html')
 
 def login(request):
     print "Login route"
