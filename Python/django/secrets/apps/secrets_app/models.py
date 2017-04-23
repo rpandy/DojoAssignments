@@ -8,6 +8,7 @@ from ..login_and_registration_app.models import User
 #Create your models here.
 class SecretManager(models.Manager):
     #handling secrets
+    #The self parameter includes all the information about the individual object that has called the method.
     def current_user(self, id):
         print "This is the current_user method"
         print "*************"
@@ -47,17 +48,19 @@ class SecretManager(models.Manager):
 
             return(True,new_secret) # <--- send tuple to views
 
-    def recent_secret_5(self):
+    def recent_secret_5(request):
         top_5_secrets = Secret.objects.order_by('-created_at')[:5]
         return top_5_secrets
 
-    def popular_secrets(self):
+    def popular_secrets(request):
+        # popular_secrets = Secret.objects.order_by('created_at')[:10]
         popular_secrets = Secret.objects.order_by('likes')[:10]
         return popular_secrets
 
-    def like_secret(data,id):
+    def like_secret(id):
         print "Like secret"
         print "*************"
+        #CHECK OUT THE DOCUMENTATION
         like = Secret.objects.get(id=id)
         like.update(likes=F('likes')+1)
         return (True,)
