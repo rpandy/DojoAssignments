@@ -36,9 +36,10 @@ def register(request):
     #save info in session for success page.
     user_info = User.objects.validate_and_login(request.POST)
     request.session['first_name'] = user_info[1].first_name
+    request.session['user_id'] = user_info[1].id
 
 
-    return render(request, 'secrets_app/index.html')
+    return redirect('secret:index')
 
 def login(request):
     print "Login route"
@@ -56,15 +57,22 @@ def login(request):
             for err in data:
                 messages.error(request,err)
             return redirect('auth:index')
-    context = {
-        'users': User.objects.all()
-    }
+
 
     #save info in session for success page.
     user_info = User.objects.validate_and_login(request.POST)
     request.session['first_name'] = user_info[1].first_name
+    request.session['user_id'] = user_info[1].id
+    # print request.user.id
+    print "first_name in session:", request.session['first_name']
+    print "id in session:",request.session['user_id']
 
-    return render(request, 'secrets_app/index.html')
+    user_id = request.session['user_id']
+    print "THIS IS THE USER ID-------->", user_id
+
+
+    # print "THIS IS THE NEW SESSION", request.session['user_id']
+    return redirect('secret:index')
 
 def logout(request):
     print "logout route"

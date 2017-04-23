@@ -68,6 +68,7 @@ class UserManager(models.Manager):
             return (True, new_object)
     def validate_and_login(self,data):
         #validate email (valid email format/ cannot be empty)
+        # Review the use of filter here vs GET
         User_Exists = User.objects.filter(email=data['email'])
         print User_Exists, "<--- replicated"
         errors = []
@@ -79,8 +80,8 @@ class UserManager(models.Manager):
             errors.append("Email is not valid")
         #Check to see if email address entered is in database
         if len(User_Exists) == 0:
-            print "Email is not registered"
-            errors.append("Email is not registered")
+            print "Email and password combination do not match"
+            errors.append("Email and password combination do not match")
         #validate password (at least 8 characters/ cannot be empty)
         if len(data['password']) < 8:
             print "Password must be at least 8 characters long"
@@ -88,6 +89,7 @@ class UserManager(models.Manager):
         if errors:
             return (False, errors)
         else:
+            #used get because we're only looking for one particular email address. Can we use same variable from before. TEST
             login_user = User.objects.get(email=data['email'])
             # login_user = User_Exists
             pw = data['password']
@@ -108,6 +110,6 @@ class User(models.Model):
     email = models.CharField(max_length = 100)
     password = models.CharField(max_length = 255)
     created_at = models.DateField(auto_now_add=True)
-    created_at = models.DateField(auto_now=True)
+    updated_at = models.DateField(auto_now=True)
 
     objects = UserManager()
