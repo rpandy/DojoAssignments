@@ -14,10 +14,11 @@ def index(request):
     # print recent_secret()
     # if 'id' in request.session:
 
-    #pass context once in the index route
+    #pass context once to the index route
     context = {
-        'recent_secret': Secret.objects.recent_secret_5(request),
+        'recent_secret': Secret.objects.recent_secret_5(),#<-- no parameter passed. sending only last 5 secrets to index.html
         'secrets': Secret.objects.all(),
+        'current_user_id':request.session['user_id'],
         # 'current_user_id': Secret.objects.current_user(request.session.user_id),
         # 'secrets': "THIS IS A HARDCODED SECRET"
     }
@@ -48,7 +49,7 @@ def popular(request):
     print "Popular Secrets Route"
     print "*****************"
     context = {
-        'secrets': Secret.objects.all(),
+        'popular_secrets': Secret.objects.popular_secrets(),
     }
     return render(request,'secrets_app/popular.html', context)
 

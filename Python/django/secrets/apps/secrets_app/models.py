@@ -12,10 +12,11 @@ class SecretManager(models.Manager):
         print "This is the current_user method"
         print "*************"
 
-        current_user_id = User.objects.get(id=id)
+        current_user_id = User.objects.get(id=id) # <--- using session in views. passing id as parameter
+
         print "current user id",current_user_id
 
-        return current_user_id
+        return current_user_id #returning current user id ONLY
 
     def create_new_secret(self,data):
         print "creating new secret"
@@ -37,18 +38,22 @@ class SecretManager(models.Manager):
             print "Lets add data to database"
             # session_user = Secret.objects.current_user(data)
             # print "this is the User variable:", current_user(data)
-            # user_id = current_user(data)
+            # user_id = request.session.user_id
             new_secret = Secret.objects.create(
                 secret = data['secret'],
                 # user_id = user_id
             )
             print "secret should be added here!"
 
-            return(True,new_secret)
+            return(True,new_secret) # <--- send tuple to views
 
-    def recent_secret_5(self,data):
+    def recent_secret_5(self):
         top_5_secrets = Secret.objects.order_by('-created_at')[:5]
         return top_5_secrets
+
+    def popular_secrets(self):
+        popular_secrets = Secret.objects.order_by('likes')[:10]
+        return popular_secrets
 
     def like_secret(data,id):
         print "Like secret"
@@ -61,6 +66,10 @@ class SecretManager(models.Manager):
         # print "CURRENT USER METHOD:", current_user(request)
         pass
 
+# class Like(models.Model):
+#     likes = models.IntegerField(default=0)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
 class Secret(models.Model):
     secret = models.TextField()
