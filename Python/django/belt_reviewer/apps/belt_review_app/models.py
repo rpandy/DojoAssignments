@@ -11,17 +11,22 @@ class ReviewManager(models.Manager):
         print "creating new review"
         print "*************"
         print data, "<<--here is the data from the validations and/or database"
+        # print "$$$$$$$$$$$$", data['user_id']
 
+        # print "user_id!!!!!!!!!!:", User.objects.get(user_id=data['user_id'])
         errors = []
         #validate length of review (>1 char/ < 300)
         if len(data['review']) < 1:
             print "Review cannot be empty"
             errors.append("Review cannot be empty")
+        if len(data['title']) < 1:
+            print "Title cannot be empty"
+            errors.append("Review cannot be empty")
         if len(data['review']) > 300:
             print "Review cannot be longer than 300 characters"
             errors.append("Review cannot be longer than 300 characters")
         if len(data['author']) < 1:
-            print "Review cannot be empty"
+            print "Author cannot be empty"
             errors.append("Review cannot be empty")
         if len(data['author']) > 150:
             print "Author's name cannot exceed 150 characters"
@@ -31,12 +36,16 @@ class ReviewManager(models.Manager):
         else:
             print "Adding data to database"
             # user_id = User.objects.get(id=data['user_id']) #get id from Login and reg models.py
-            user = User.objects.get(user_id=data['user_id']) #get id from Login and reg models.py
+            # user = User.objects.get(user_id=data['user_id']) #get id from Login and reg models.py
+
             new_review = Review.objects.create(
                 review = data['review'],
                 rating = data['rating'],
-                user_id = user,
+                # user = user,
             )
+    # def get_rating(request):
+    #     new_rating = Review.objects.get(rating=data['rating'])
+
             print "data was added!"
             return(True,new_review)
 

@@ -11,12 +11,13 @@
             <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
+
         <form class="" action="{% url 'review:new_review'  %}" method="post">
             {% csrf_token %}
             <input type="text" name="title" placeholder="Book Title"><br>
             <input type="text" name="author" placeholder="Author"><br>
             <textarea name="review" placeholder="Your review here...."rows="8" cols="80"></textarea><br>
-            <label for="">rating</label>
+            <label for="">Rating:</label>
             <select name="rating">
                 <option value="5">5</option>
                 <option value="5">4</option>
@@ -26,6 +27,19 @@
             </select>
             <input type="submit" name="" value="Submit">
         </form>
+        {% for review in all_reviews %}
+        <ul>
+            Review: {{review.review}}
+            <br>Rating:
+            {% for rating in "12345" %}
+                "star"
+            {% endfor %}<br>
+            <!-- {{review.rating}} - -->
+            Created at: {{review.created_at}}
+            {{review.user}}
+            <!-- {{review.updated_at}} -->
+        </ul>
+        {% endfor %}
         <a href="{% url 'review:index' %}">Back</a>
     </body>
 </html>

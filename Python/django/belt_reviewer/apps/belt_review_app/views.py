@@ -9,17 +9,17 @@ from .models import Review
 def index(request):
     print "INDEX METHOD"
     print "************"
-    # context = {
-    #
-    # }
 
     return render(request, 'belt_review_app/index.html')
 
 def add(request):
     print "ADD METHOD"
     print "************"
-
-    return render(request, 'belt_review_app/add.html')
+    context = {
+        'all_reviews': Review.objects.all()
+    }
+    print context, "<------- CONTEXT"
+    return render(request, 'belt_review_app/add.html', context)
 
 def new_review(request):
     print "NEW REVIEW METHOD"
