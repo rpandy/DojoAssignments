@@ -58,6 +58,7 @@ class Review(models.Model):
     review = models.TextField()
     rating = models.IntegerField(default=0)
     user_id = models.ForeignKey(User, null=True)
+    #book_id = models.ForeignKey(Book,on_delete=models.CASCADE)<------ADD
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -65,7 +66,8 @@ class Review(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length = 300)
-    review_id = models.ForeignKey(Review, on_delete=models.CASCADE)
+    #review_id = models.ForeignKey(Review, on_delete=models.CASCADE) <---- REMOVE 
+    #author_id = models.ForeignKey(Author,on_delete=models.CASCADE) <------ADD 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -73,6 +75,7 @@ class Book(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length = 150)
+    #book_id = models.ForeignKey(Book,on_delete=models.CASCADE) <------ADD 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
