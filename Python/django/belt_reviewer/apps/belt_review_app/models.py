@@ -75,7 +75,7 @@ class Book(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length = 150)
-    #book_id = models.ForeignKey(Book,on_delete=models.CASCADE) <------ADD 
+    #book_id = models.ForeignKey(Book,on_delete=models.CASCADE) <------REMOVE 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
