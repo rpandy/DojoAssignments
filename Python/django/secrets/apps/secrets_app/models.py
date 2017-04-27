@@ -13,7 +13,7 @@ class SecretManager(models.Manager):
         print "This is the current_user method"
         print "*************"
 
-        current_user_id = User.objects.get(id=id) # <--- using session in views. passing id as parameter
+        current_user_id = User.objects.get(id=id) # <--- using session in views. passing id as parameter TRY id = data=['user_id']
 
         print "current user id",current_user_id
 
